@@ -12,7 +12,18 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <!-- required 'container' class wrapper for our rows/columns -->
+
+      <!-- User sign-up form -->
+      <h2>This application is not secure. Please do not use real passwords, or any password you have used anywhere else</h2>
+      <p id="failure-message"></p>
+      <form id="sign-up-form">
+        <input name="credentials[email]" type="email" placeholder="email">
+        <input name="credentials[password]" type="password" placeholder="password">
+        <input name="credentials[password_confirmation]" type="password" placeholder="confirm password">
+        <input type="submit" value="Sign Up">
+      </form>
+      <br>
+      <!-- Create game board for the user -->
       <div class="container my-5">
         <h1>tic-tac-toe initial game board</h1>
         <br>

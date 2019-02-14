@@ -10,7 +10,17 @@ const addOPiece = (boxData) => {
   $(`#${boxData.id}`).text('o')
 }
 
+const signUpSuccess = () => {
+  $('#sign-up-form').html('successful sign up')
+}
+
+const failure = () => {
+  $('#failure-message').text('Something went wrong. Please try again')
+}
+
 module.exports = {
   addXPiece,
-  addOPiece
+  addOPiece,
+  signUpSuccess,
+  failure
 }

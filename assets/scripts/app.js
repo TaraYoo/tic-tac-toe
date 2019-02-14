@@ -6,8 +6,13 @@
 // use require without a reference to ensure a file is bundled
 // require('./example')
 
+// testing/development account is
+// email: scrap@baji.com
+// password: pupper
+
 const gameEvents = require('./game/events')
 
 $(() => {
   $('.box').on('click', gameEvents.onMadeMove)
+  $('#sign-up-form').on('submit', gameEvents.onSignUp)
 })
