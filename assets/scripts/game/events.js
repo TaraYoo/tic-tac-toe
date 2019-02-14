@@ -6,15 +6,6 @@ const ui = require('./ui.js')
 const gameEngine = require('../../../lib/game-engine.js')
 const store = require('../store.js')
 
-const onMadeMove = function (event) {
-  event.preventDefault()
-
-  // identify which box the user clicked to add a game piece
-  const boxData = event.target
-  // add an x to corresponding box(need game logic to add o's on even moves (mod2 = 0))
-  ui.addXPiece(boxData)
-}
-
 const onSignUp = function (event) {
   event.preventDefault()
 
@@ -54,11 +45,15 @@ const onUserMove = (event) => {
   if (store.user) {
     gameEngine.updateBoard(boxData.id)
     console.log(store.user.gameBoard)
+    if (store.user.turn % 2 === 1) {
+      ui.addXPiece(boxData)
+    } else {
+      ui.addOPiece(boxData)
+    }
   } else { ui.gameFailure() }
 }
 
 module.exports = {
-  onMadeMove,
   onSignUp,
   onSignIn,
   onNewGame,
