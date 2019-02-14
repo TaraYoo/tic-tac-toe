@@ -13,9 +13,9 @@
     </head>
     <body>
 
-      <!-- User sign-up form -->
       <h2>This application is not secure. Please do not use real passwords, or any password you have used anywhere else</h2>
       <p id="failure-message"></p>
+      <!-- User sign-up form -->
       <form id="sign-up-form">
         <input name="credentials[email]" type="email" placeholder="email">
         <input name="credentials[password]" type="password" placeholder="password">
@@ -23,6 +23,14 @@
         <input type="submit" value="Sign Up">
       </form>
       <br>
+
+      <!-- User sign-in form -->
+      <form id="sign-in-form">
+        <input name="credentials[email]" type="email" placeholder="email">
+        <input name="credentials[password]" type="password" placeholder="password">
+        <input type="submit" placeholder="Sign In">
+      </form>
+
       <!-- Create game board for the user -->
       <div class="container my-5">
         <h1>tic-tac-toe initial game board</h1>

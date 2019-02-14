@@ -15,4 +15,5 @@ const gameEvents = require('./game/events')
 $(() => {
   $('.box').on('click', gameEvents.onMadeMove)
   $('#sign-up-form').on('submit', gameEvents.onSignUp)
+  $('#sign-in-form').on('submit', gameEvents.onSignIn)
 })
