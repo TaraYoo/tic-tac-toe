@@ -28,7 +28,13 @@
       <form id="sign-in-form">
         <input name="credentials[email]" type="email" placeholder="email">
         <input name="credentials[password]" type="password" placeholder="password">
-        <input type="submit" placeholder="Sign In">
+        <input type="submit" value="Sign In">
+      </form>
+      <br>
+
+      <!-- Kick off a new game -->
+      <form id="create-game-form">
+        <input type="submit" value="Start a game">
       </form>
 
       <!-- Create game board for the user -->
@@ -36,19 +42,19 @@
         <h1>tic-tac-toe initial game board</h1>
         <br>
         <div class="row">
+          <div class="col-xs-4 box" id="zero"></div>
           <div class="col-xs-4 box" id="one"></div>
           <div class="col-xs-4 box" id="two"></div>
-          <div class="col-xs-4 box" id="three"></div>
         </div>
         <div class="row">
+          <div class="col-xs-4 box" id="three"></div>
           <div class="col-xs-4 box" id="four"></div>
           <div class="col-xs-4 box" id="five"></div>
-          <div class="col-xs-4 box" id="six"></div>
         </div>
         <div class="row">
+          <div class="col-xs-4 box" id="six"></div>
           <div class="col-xs-4 box" id="seven"></div>
           <div class="col-xs-4 box" id="eight"></div>
-          <div class="col-xs-4 box" id="nine"></div>
         </div>
       </div>
     </body>

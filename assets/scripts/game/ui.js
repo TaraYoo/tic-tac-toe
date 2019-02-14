@@ -23,8 +23,16 @@ const signInSuccess = (responseData) => {
   console.log(store)
 }
 
+const newGameSuccess = () => {
+  $('#sign-up-form').html('new game!')
+}
+
 const failure = () => {
   $('#failure-message').text('Something went wrong. Please try again')
+}
+
+const gameFailure = () => {
+  $('#failure-message').text('Please initialize game first by pressing start game')
 }
 
 module.exports = {
@@ -32,5 +40,7 @@ module.exports = {
   addOPiece,
   signUpSuccess,
   signInSuccess,
-  failure
+  newGameSuccess,
+  failure,
+  gameFailure
 }

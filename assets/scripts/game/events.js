@@ -1,9 +1,10 @@
 'use strict'
 
-const gameUI = require('./ui.js')
 const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
+const gameEngine = require('../../../lib/game-engine.js')
+const store = require('../store.js')
 
 const onMadeMove = function (event) {
   event.preventDefault()
@@ -11,7 +12,7 @@ const onMadeMove = function (event) {
   // identify which box the user clicked to add a game piece
   const boxData = event.target
   // add an x to corresponding box(need game logic to add o's on even moves (mod2 = 0))
-  gameUI.addXPiece(boxData)
+  ui.addXPiece(boxData)
 }
 
 const onSignUp = function (event) {
@@ -36,8 +37,30 @@ const onSignIn = (event) => {
     .catch(ui.failure)
 }
 
+const onNewGame = (event) => {
+  event.preventDefault()
+
+  // initiate a new game
+  gameEngine.newGame()
+  ui.newGameSuccess()
+}
+
+const onUserMove = (event) => {
+  event.preventDefault()
+
+  // identify which box the user clicked to add a game piece
+  const boxData = event.target
+  // add an x to corresponding box(need game logic to add o's on even moves (mod2 = 0))
+  if (store.user) {
+    gameEngine.updateBoard(boxData.id)
+    console.log(store.user.gameBoard)
+  } else { ui.gameFailure() }
+}
+
 module.exports = {
   onMadeMove,
   onSignUp,
-  onSignIn
+  onSignIn,
+  onNewGame,
+  onUserMove
 }
