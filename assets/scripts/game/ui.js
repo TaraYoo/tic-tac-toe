@@ -35,6 +35,13 @@ const gameFailure = () => {
   $('#failure-message').text('Please initialize game first by pressing start game')
 }
 
+const announceWinner = (winner) => {
+  const announcement = `
+    <h2>${winner} wins!</h2>
+  `
+  $('.game-board').html(announcement)
+}
+
 module.exports = {
   addXPiece,
   addOPiece,
@@ -42,5 +49,6 @@ module.exports = {
   signInSuccess,
   newGameSuccess,
   failure,
-  gameFailure
+  gameFailure,
+  announceWinner
 }

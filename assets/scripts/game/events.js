@@ -50,6 +50,9 @@ const onUserMove = (event) => {
     } else {
       ui.addOPiece(boxData)
     }
+    if (gameEngine.declareWinner(store.user.gameBoard)) {
+      ui.announceWinner(gameEngine.declareWinner(store.user.gameBoard))
+    }
   } else { ui.gameFailure() }
 }
 
