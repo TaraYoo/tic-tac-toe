@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe Game</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,52 +12,44 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-
-      <h2>This application is not secure. Please do not use real passwords, or any password you have used anywhere else</h2>
-      <p id="failure-message"></p>
-      <!-- User sign-up form -->
-      <form id="sign-up-form">
-        <input name="credentials[email]" type="email" placeholder="email">
-        <input name="credentials[password]" type="password" placeholder="password">
-        <input name="credentials[password_confirmation]" type="password" placeholder="confirm password">
-        <input type="submit" value="Sign Up">
-      </form>
-      <br>
-
-      <!-- User sign-in form -->
-      <form id="sign-in-form">
-        <input name="credentials[email]" type="email" placeholder="email">
-        <input name="credentials[password]" type="password" placeholder="password">
-        <input type="submit" value="Sign In">
-      </form>
-      <br>
-
-      <!-- Kick off a new game -->
-      <form id="create-game-form">
-        <input type="submit" value="Start a game">
-      </form>
-
-      <!-- Create game board for the user -->
       <div class="container my-5">
-        <h1>tic-tac-toe initial game board</h1>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" id="sign-up">Sign Up</button> <br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" id="sign-in">Sign In</button> <br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block hidden-elements" id="new-game">New Game</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block sign-in">Sign Out</button> <br>
+
+        <h2 id="user-alert"></h2>
+        <form id="sign-up-form" class="hidden-elements">
+        <h2>This application is not secure. Please do not use real passwords, or any password you have used anywhere else</h2>
         <br>
-        <div id="game-board">
-          <div class="row">
-            <div class="col-xs-4 box" id="zero"></div>
-            <div class="col-xs-4 box" id="one"></div>
-            <div class="col-xs-4 box" id="two"></div>
+          <input name="credentials[email]" type="email" placeholder="email">
+          <input name="credentials[password]" type="password" placeholder="password">
+          <input name="credentials[password_confirmation]" type="password" placeholder="confirm password">
+          <input type="submit" value="Sign Up">
+        </form>
+
+        <form id="sign-in-form" class="hidden-elements">
+          <input name="credentials[email]" type="email" placeholder="email">
+          <input name="credentials[password]" type="password" placeholder="password">
+          <input type="submit" value="Sign In">
+        </form>
+
+        <div class="embed-responsive embed-responsive-1by1 gamearea hidden-elements">
+          <div id="game-board" class="embed-responsive-item game-board">
+            <div class="game-box col-4" id="zero"></div>
+            <div class="game-box col-4" id="one"></div>
+            <div class="game-box col-4" id="two"></div>
+            <div class="game-box col-4" id="three"></div>
+            <div class="game-box col-4" id="four"></div>
+            <div class="game-box col-4" id="five"></div>
+            <div class="game-box col-4" id="six"></div>
+            <div class="game-box col-4" id="seven"></div>
+            <div class="game-box col-4" id="eight"></div>
           </div>
-          <div class="row">
-            <div class="col-xs-4 box" id="three"></div>
-            <div class="col-xs-4 box" id="four"></div>
-            <div class="col-xs-4 box" id="five"></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-4 box" id="six"></div>
-            <div class="col-xs-4 box" id="seven"></div>
-            <div class="col-xs-4 box" id="eight"></div>
-          </div>
+        </div>
       </div>
-      </div>
+
+
+      <p id="failure-message"></p>
     </body>
 </html>

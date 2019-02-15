@@ -10,11 +10,14 @@
 // email: scrap@baji.com
 // password: pupper
 
-const gameEvents = require('./game/events')
+const gameEvents = require('./game/gameEvents')
+const userEvents = require('./user/userEvents')
 
 $(() => {
-  $('.box').on('click', gameEvents.onUserMove)
-  $('#sign-up-form').on('submit', gameEvents.onSignUp)
-  $('#sign-in-form').on('submit', gameEvents.onSignIn)
-  $('#create-game-form').on('submit', gameEvents.onNewGame)
+  $('#sign-up').on('click', userEvents.onSignUpRequest)
+  $('#sign-up-form').on('submit', userEvents.onSignUp)
+  $('#sign-in').on('click', userEvents.onSignInRequest)
+  $('#sign-in-form').on('submit', userEvents.onSignIn)
+  $('.game-box').on('click', gameEvents.onUserMove)
+  $('#new-game').on('click', gameEvents.onNewGame)
 })

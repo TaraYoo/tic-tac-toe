@@ -1,12 +1,37 @@
+.gamearea {
+  margin: auto;
+  max-height: 70vh;
+  max-width: 70vh;
+  width: 90%;
+}
 
-.box {
-  align-items: center;
-  background-color: $white;
-  border: 1px solid $black;
-  color: $black;
+.game-board {
   display: flex;
   flex-wrap: wrap;
-  font-size: 50px;
-  height: 200px;
-  width: 200px;
+
+  > div {
+    align-items: center;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    color: $black;
+    display: flex;
+    font-size: 4vh;
+    justify-content: center;
+    line-height: 1;
+    min-height: calc(100%/3);
+    width: calc(100%/3);
+
+    &:nth-child(3n) {
+      border-right: 1px solid $white;
+    }
+
+    &:nth-last-child(-n+3) {
+      border-bottom: 1px solid $white;
+    }
+  }
+}
+// from Jen's styling class on Friday, 2/15
+
+.hidden-elements {
+  display: none;
 }
