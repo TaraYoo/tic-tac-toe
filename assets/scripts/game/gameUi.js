@@ -5,6 +5,7 @@ const gameEngine = require('../../../lib/game-engine.js')
 
 const newGameSuccess = (responseData) => {
   store.user.game = responseData.game
+  store.user.game.turn = 0
   $('#user-alert').empty()
   $('.gamearea').show()
   $('.game-box').empty()
@@ -12,7 +13,7 @@ const newGameSuccess = (responseData) => {
 }
 
 const addPiece = (boxData) => {
-  const gameBoard = store.user.gameBoard
+  const gameBoard = store.user.game.cells
   const targetBox = gameEngine.boxIdAssignment[`${boxData.id}`]
   $(`#${boxData.id}`).text(`${gameBoard[targetBox]}`)
   $('#user-alert').show()

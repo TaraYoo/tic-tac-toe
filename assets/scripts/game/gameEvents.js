@@ -12,7 +12,7 @@ const onNewGame = (event) => {
   api.createGame()
     .then(ui.newGameSuccess)
     .catch(ui.gameFailure)
-  console.log(store.user.game.cells)
+  console.log(store.user)
 }
 
 const onUserMove = (event) => {
@@ -24,10 +24,10 @@ const onUserMove = (event) => {
   if (store.user) {
     gameEngine.updateBoard(boxData.id)
     ui.addPiece(boxData)
-    if (gameEngine.declareWinner(store.user.gameBoard)) {
-      ui.announceWinner(gameEngine.declareWinner(store.user.gameBoard))
-    } else if (gameEngine.declareTie(store.user.gameBoard)) {
-      console.log(gameEngine.declareTie(store.user.gameBoard))
+    const gameBoard = store.user.game.cells
+    if (gameEngine.declareWinner(gameBoard)) {
+      ui.announceWinner(gameEngine.declareWinner(gameBoard))
+    } else if (gameEngine.declareTie(gameBoard)) {
       ui.announceTie()
     }
   } else { ui.gameFailure() }
