@@ -5,11 +5,13 @@ const store = require('../store.js')
 const addXPiece = (boxData) => {
   // add an x (for now, will need to add game logic to add o's on even moves)
   $(`#${boxData.id}`).text('x')
+  $('#failure-message').text('Player O is up!')
 }
 
 const addOPiece = (boxData) => {
   // placeholder function to add o on even moves
   $(`#${boxData.id}`).text('o')
+  $('#failure-message').text('Player X is up!')
 }
 
 const signUpSuccess = () => {
@@ -25,6 +27,8 @@ const signInSuccess = (responseData) => {
 
 const newGameSuccess = () => {
   $('#sign-up-form').html('new game!')
+  $('#game-board').show()
+  $('.box').empty()
 }
 
 const failure = () => {
@@ -39,7 +43,9 @@ const announceWinner = (winner) => {
   const announcement = `
     <h2>${winner} wins!</h2>
   `
-  $('.game-board').html(announcement)
+  $('#game-board').hide()
+  $('#failure-message').html(announcement)
+  $('#sign-up-form').hide()
 }
 
 module.exports = {
