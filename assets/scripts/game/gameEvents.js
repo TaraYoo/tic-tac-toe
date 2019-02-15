@@ -20,10 +20,12 @@ const onUserMove = (event) => {
   // add an x to corresponding box(need game logic to add o's on even moves (mod2 = 0))
   if (store.user) {
     gameEngine.updateBoard(boxData.id)
-    console.log(store.user.gameBoard)
     ui.addPiece(boxData)
     if (gameEngine.declareWinner(store.user.gameBoard)) {
       ui.announceWinner(gameEngine.declareWinner(store.user.gameBoard))
+    } else if (gameEngine.declareTie(store.user.gameBoard)) {
+      console.log(gameEngine.declareTie(store.user.gameBoard))
+      ui.announceTie()
     }
   } else { ui.gameFailure() }
 }

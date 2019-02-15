@@ -21,7 +21,6 @@ const signInRequest = () => {
   $('#sign-up-form').empty()
   $('#sign-up-form').hide()
   $('#user-alert').empty()
-  $('#user-alert').hide()
 }
 
 const signInSuccess = (responseData) => {
@@ -31,6 +30,7 @@ const signInSuccess = (responseData) => {
   $('#sign-up').hide()
   $('#sign-in').hide()
   $('#sign-in-form').hide()
+  $('#sign-out').show()
   $('#new-game').show()
 }
 
