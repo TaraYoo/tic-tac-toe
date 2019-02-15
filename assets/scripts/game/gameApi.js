@@ -1,24 +1,19 @@
 'use strict'
 
 const config = require('../config.js')
+const store = require('../store.js')
 
-const signUp = (formData) => {
+const createGame = () => {
   return $.ajax({
-    url: config.apiUrl + '/sign-up',
+    url: config.apiUrl + '/games',
     method: 'POST',
-    data: formData
-  })
-}
-
-const signIn = (formData) => {
-  return $.ajax({
-    url: config.apiUrl + '/sign-in',
-    method: 'POST',
-    data: formData
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {}
   })
 }
 
 module.exports = {
-  signUp,
-  signIn
+  createGame
 }

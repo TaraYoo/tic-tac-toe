@@ -3,6 +3,14 @@
 const store = require('../store.js')
 const gameEngine = require('../../../lib/game-engine.js')
 
+const newGameSuccess = (responseData) => {
+  store.user.game = responseData.game
+  $('#user-alert').empty()
+  $('.gamearea').show()
+  $('.game-box').empty()
+  $('#game-board').show()
+}
+
 const addPiece = (boxData) => {
   const gameBoard = store.user.gameBoard
   const targetBox = gameEngine.boxIdAssignment[`${boxData.id}`]
@@ -15,15 +23,8 @@ const addPiece = (boxData) => {
   }
 }
 
-const newGameSuccess = () => {
-  $('#user-alert').empty()
-  $('.gamearea').show()
-  $('.game-box').empty()
-  $('#game-board').show()
-}
-
 const gameFailure = () => {
-  $('#user-alert').text('Please initialize game first by pressing start game')
+  $('#user-alert').text('Something went wrong. Please try again')
 }
 
 const announceWinner = (winner) => {
