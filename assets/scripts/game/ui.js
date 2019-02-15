@@ -1,17 +1,12 @@
 'use strict'
 
 const store = require('../store.js')
+const gameEngine = require('../../../lib/game-engine.js')
 
-const addXPiece = (boxData) => {
-  // add an x (for now, will need to add game logic to add o's on even moves)
-  $(`#${boxData.id}`).text('x')
-  $('#failure-message').text('Player O is up!')
-}
-
-const addOPiece = (boxData) => {
-  // placeholder function to add o on even moves
-  $(`#${boxData.id}`).text('o')
-  $('#failure-message').text('Player X is up!')
+const addPiece = (boxData) => {
+  const gameBoard = store.user.gameBoard
+  const targetBox = gameEngine.boxIdAssignment[`${boxData.id}`]
+  $(`#${boxData.id}`).text(`${gameBoard[targetBox]}`)
 }
 
 const signUpSuccess = () => {
@@ -49,8 +44,7 @@ const announceWinner = (winner) => {
 }
 
 module.exports = {
-  addXPiece,
-  addOPiece,
+  addPiece,
   signUpSuccess,
   signInSuccess,
   newGameSuccess,

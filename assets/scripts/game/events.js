@@ -45,11 +45,7 @@ const onUserMove = (event) => {
   if (store.user) {
     gameEngine.updateBoard(boxData.id)
     console.log(store.user.gameBoard)
-    if (store.user.turn % 2 === 1) {
-      ui.addXPiece(boxData)
-    } else {
-      ui.addOPiece(boxData)
-    }
+    ui.addPiece(boxData)
     if (gameEngine.declareWinner(store.user.gameBoard)) {
       ui.announceWinner(gameEngine.declareWinner(store.user.gameBoard))
     }
