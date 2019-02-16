@@ -14,9 +14,12 @@ const newGameSuccess = (responseData) => {
 
 const addPiece = (boxData) => {
   const gameBoard = store.user.game.cells
+  // translate the box id which is in string (i.e. 'zer', 'one'...) to numbers
   const targetBox = gameEngine.boxIdAssignment[`${boxData.id}`]
+  // Move the corresponding gameBoard array piece to targetBox. game board gets updated through game engine logic
   $(`#${boxData.id}`).text(`${gameBoard[targetBox]}`)
   $('#user-alert').show()
+  // Each valid move increases a turn -- even numbered turns means that player O is going (since turns - player X start at 1)
   if (store.user.turn % 2 === 0) {
     $('#user-alert').text('Player X is up!')
   } else {

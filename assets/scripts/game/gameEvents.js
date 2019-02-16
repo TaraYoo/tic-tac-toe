@@ -12,19 +12,23 @@ const onNewGame = (event) => {
   api.createGame()
     .then(ui.newGameSuccess)
     .catch(ui.gameFailure)
-  console.log(store.user)
+  console.log('new game creation sees', store.user)
 }
 
 const onUserMove = (event) => {
   event.preventDefault()
-
-  // identify which box the user clicked to add a game piece
   const boxData = event.target
-  // add an x to corresponding box(need game logic to add o's on even moves (mod2 = 0))
+  const gameId = store.user.game.id
+
   if (store.user) {
     gameEngine.updateBoard(boxData.id)
     ui.addPiece(boxData)
     const gameBoard = store.user.game.cells
+    // retrieve the current state of the game, which gets updated via the gameEngine
+    const targetIndex = gameEngine.boxIdAssignment[boxData.id]
+    // translate the box a user clicks to a corresponding index number
+    api.updateGamePiece(gameId, targetIndex, gameBoard[targetIndex])
+    // Update the API game state
     if (gameEngine.declareWinner(gameBoard)) {
       ui.announceWinner(gameEngine.declareWinner(gameBoard))
     } else if (gameEngine.declareTie(gameBoard)) {
