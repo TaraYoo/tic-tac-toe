@@ -21,12 +21,14 @@ const onUserMove = (event) => {
   const gameId = store.user.game.id
 
   if (store.user) {
-    gameEngine.updateBoard(boxData.id)
-    ui.addPiece(boxData)
     const gameBoard = store.user.game.cells
     // retrieve the current state of the game, which gets updated via the gameEngine
     const targetIndex = gameEngine.boxIdAssignment[boxData.id]
     // translate the box a user clicks to a corresponding index number
+    gameEngine.updateBoard(boxData.id)
+
+    ui.addPiece(boxData)
+
     api.updateGamePiece(gameId, targetIndex, gameBoard[targetIndex])
       .then()
       .catch(ui.connectionLost)

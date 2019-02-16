@@ -53,6 +53,7 @@ const signOutSuccess = () => {
   $('#new-game').hide()
   $('form').trigger('reset')
   $('form').hide()
+  $('#user-record').empty()
   store.user = null
 }
 
@@ -61,6 +62,7 @@ const changePasswordRequest = () => {
   $('form').trigger('reset')
   $('#change-password-form').show()
   $('#user-alert').empty()
+  $('#user-record').empty()
   $('.gamearea').hide()
 }
 
