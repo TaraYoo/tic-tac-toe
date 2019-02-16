@@ -28,6 +28,7 @@ const signInSuccess = (responseData) => {
   store.user = responseData.user
   $('#user-alert').show()
   $('#user-alert').html(`Welcome ${responseData.user.email}`)
+  $('#user-record').html('You have played these games')
   $('#sign-up').hide()
   $('#sign-in').hide()
   $('form').trigger('reset')
@@ -35,6 +36,11 @@ const signInSuccess = (responseData) => {
   $('#sign-out').show()
   $('#new-game').show()
   $('#change-password').show()
+}
+
+const gameRecordSuccess = (responseData) => {
+  const numberOfGames = responseData.games.length
+  $('#user-record').text(`You have played ${numberOfGames} games.`)
 }
 
 const signOutSuccess = () => {
@@ -78,5 +84,6 @@ module.exports = {
   signOutSuccess,
   changePasswordRequest,
   changePasswordSuccess,
-  failure
+  failure,
+  gameRecordSuccess
 }

@@ -40,9 +40,20 @@ const changePassword = (formData) => {
   })
 }
 
+const getGameRecords = () => {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
-  changePassword
+  changePassword,
+  getGameRecords
 }

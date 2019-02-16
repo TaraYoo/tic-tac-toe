@@ -25,6 +25,12 @@ const onSignInRequest = (event) => {
   ui.signInRequest()
 }
 
+const getGameRecords = () => {
+  api.getGameRecords()
+    .then(ui.gameRecordSuccess)
+    .catch(ui.failure)
+}
+
 const onSignIn = (event) => {
   event.preventDefault()
 
@@ -33,6 +39,7 @@ const onSignIn = (event) => {
 
   api.signIn(formData)
     .then(ui.signInSuccess)
+    .then(getGameRecords)
     .catch(ui.failure)
 }
 
