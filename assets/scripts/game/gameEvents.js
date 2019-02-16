@@ -12,7 +12,6 @@ const onNewGame = (event) => {
   api.createGame()
     .then(ui.newGameSuccess)
     .catch(ui.gameFailure)
-  console.log('new game creation sees', store.user)
 }
 
 const onUserMove = (event) => {
