@@ -32,7 +32,23 @@ const updateGamePiece = (gameId, index, gamePiece) => {
   })
 }
 
+const updateGameStatus = (gameId, gameStatus) => {
+  return $.ajax({
+    url: config.apiUrl + `/games/${gameId}`,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {
+      game: {
+        over: gameStatus
+      }
+    }
+  })
+}
+
 module.exports = {
   createGame,
-  updateGamePiece
+  updateGamePiece,
+  updateGameStatus
 }
