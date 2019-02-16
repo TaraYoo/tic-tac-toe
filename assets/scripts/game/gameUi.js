@@ -20,7 +20,6 @@ const addPiece = (boxData) => {
   $(`#${boxData.id}`).text(`${gameBoard[targetBox]}`)
   $('#user-alert').show()
   // Each valid move increases a turn -- even numbered turns means that player O is going (since turns - player X start at 1)
-  console.log(store.user.game.turn)
   if (store.user.game.turn % 2 === 0) {
     $('#user-alert').text('Player X is up!')
   } else {
