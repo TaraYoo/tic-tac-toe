@@ -34,6 +34,16 @@ const signInSuccess = (responseData) => {
   $('#new-game').show()
 }
 
+const signOutSuccess = () => {
+  $('#user-alert').show()
+  $('#user-alert').text('You are signed out!')
+  $('#sign-up').show()
+  $('#sign-in').show()
+  $('#sign-out').hide()
+  $('#new-game').hide()
+  store.user = null
+}
+
 const failure = () => {
   $('#user-alert').text('Something went wrong. Please try again')
 }
@@ -43,5 +53,6 @@ module.exports = {
   signUpSuccess,
   signInRequest,
   signInSuccess,
+  signOutSuccess,
   failure
 }

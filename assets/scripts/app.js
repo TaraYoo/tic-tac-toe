@@ -20,4 +20,5 @@ $(() => {
   $('#sign-in-form').on('submit', userEvents.onSignIn)
   $('.game-box').on('click', gameEvents.onUserMove)
   $('#new-game').on('click', gameEvents.onNewGame)
+  $('#sign-out').on('click', userEvents.onSignOut)
 })
