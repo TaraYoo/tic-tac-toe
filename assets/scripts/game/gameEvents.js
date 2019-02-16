@@ -28,15 +28,21 @@ const onUserMove = (event) => {
     const targetIndex = gameEngine.boxIdAssignment[boxData.id]
     // translate the box a user clicks to a corresponding index number
     api.updateGamePiece(gameId, targetIndex, gameBoard[targetIndex])
+      .then()
+      .catch(ui.connectionLost)
     // Update the API game state if game declares a winner or a tie
     if (gameEngine.declareWinner(gameBoard)) {
       ui.announceWinner(gameEngine.declareWinner(gameBoard))
       api.updateGameStatus(gameId, true)
+        .then()
+        .catch(ui.connectionLost)
     } else if (gameEngine.declareTie(gameBoard)) {
       ui.announceTie()
       api.updateGameStatus(gameId, true)
+        .then()
+        .catch(ui.connectionLost)
     }
-  } else { ui.gameFailure() }
+  }
 }
 
 module.exports = {

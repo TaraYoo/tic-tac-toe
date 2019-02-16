@@ -3,6 +3,7 @@
 const store = require('../store.js')
 
 const signUpRequest = () => {
+  $('form').trigger('reset')
   $('#sign-up-form').show()
 }
 
@@ -13,12 +14,12 @@ const signUpSuccess = () => {
   You're signed up. Please sign in.
   `
   $('#user-alert').html(signInGuide)
-  $('#sign-up-form').html('successful sign up')
+  $('form').trigger('reset')
 }
 
 const signInRequest = () => {
+  $('form').trigger('reset')
   $('#sign-in-form').show()
-  $('#sign-up-form').empty()
   $('#sign-up-form').hide()
   $('#user-alert').empty()
 }
@@ -29,10 +30,11 @@ const signInSuccess = (responseData) => {
   $('#user-alert').html(`Welcome ${responseData.user.email}`)
   $('#sign-up').hide()
   $('#sign-in').hide()
-  $('#sign-in-form').hide()
+  $('form').trigger('reset')
+  $('form').hide()
   $('#sign-out').show()
   $('#new-game').show()
-  $('#change-password-form').show()
+  $('#change-password').show()
 }
 
 const signOutSuccess = () => {
@@ -41,17 +43,31 @@ const signOutSuccess = () => {
   $('#sign-up').show()
   $('#sign-in').show()
   $('#sign-out').hide()
+  $('#change-password').hide()
   $('#new-game').hide()
+  $('form').trigger('reset')
+  $('form').hide()
   store.user = null
+}
+
+const changePasswordRequest = () => {
+  console.log('ui is running')
+  $('form').trigger('reset')
+  $('#change-password-form').show()
+  $('#user-alert').empty()
+  $('.gamearea').hide()
 }
 
 const changePasswordSuccess = () => {
   $('#user-alert').show()
   $('#user-alert').text('password changed successfully')
+  $('form').trigger('reset')
+  $('#change-password-form').hide()
 }
 
 const failure = () => {
   $('#user-alert').text('Something went wrong. Please try again')
+  $('form').trigger('reset')
 }
 
 module.exports = {
@@ -60,6 +76,7 @@ module.exports = {
   signInRequest,
   signInSuccess,
   signOutSuccess,
+  changePasswordRequest,
   changePasswordSuccess,
   failure
 }

@@ -10,6 +10,8 @@ const newGameSuccess = (responseData) => {
   $('.gamearea').show()
   $('.game-box').empty()
   $('#game-board').show()
+  $('form').trigger('reset')
+  $('form').hide()
 }
 
 const addPiece = (boxData) => {
@@ -31,6 +33,10 @@ const gameFailure = () => {
   $('#user-alert').text('Something went wrong. Please try again')
 }
 
+const connectionLost = () => {
+  $('#user-alert').text('We lost connection. Your game may not be recorded')
+}
+
 const announceWinner = (winner) => {
   const announcement = `
     <h2>Player ${winner} wins!</h2>
@@ -48,5 +54,6 @@ module.exports = {
   newGameSuccess,
   gameFailure,
   announceWinner,
-  announceTie
+  announceTie,
+  connectionLost
 }
