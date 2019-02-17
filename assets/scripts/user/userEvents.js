@@ -43,6 +43,14 @@ const onSignIn = (event) => {
     .catch(ui.failure)
 }
 
+const onRevisitGame = (event) => {
+  event.preventDefault()
+
+  api.getGameRecords()
+    .then(ui.listUnfinishedGames)
+    .catch(ui.failure)
+}
+
 const onSignOut = (event) => {
   event.preventDefault()
 
@@ -74,5 +82,6 @@ module.exports = {
   onSignIn,
   onSignOut,
   onChangePasswordRequest,
-  onChangePassword
+  onChangePassword,
+  onRevisitGame
 }

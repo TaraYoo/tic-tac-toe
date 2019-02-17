@@ -45,7 +45,7 @@
           <p class="lead user-record"></p>
           <hr class="my-4">
           <p class="lead">
-            <button class="btn btn-primary btn-lg" role="button">Revisit unfinished games</button>
+            <button class="btn btn-primary btn-lg" role="button" id="revisit-games">Revisit unfinished games</button>
             <button class="btn btn-primary btn-lg" role="button" id="new-game">Play a new game</button>
           </p>
         </div>
@@ -53,6 +53,8 @@
         <h2 id="user-alert"></h2>
         <h2 id="invalid-move"></h2>
         <p id="user-record"></p>
+
+        <ul class="hidden-elements unfinished-games"></ul>
 
         <div class="embed-responsive embed-responsive-1by1 gamearea hidden-elements">
           <div id="game-board" class="embed-responsive-item game-board">

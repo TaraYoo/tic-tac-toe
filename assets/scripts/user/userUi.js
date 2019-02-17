@@ -51,8 +51,6 @@ const gameRecordSuccess = (responseData) => {
     }
   })
 
-  const unFinishedGames = numberOfGames - finishedGames.length
-
   const xVictory = []
   const oVictory = []
 
@@ -61,8 +59,28 @@ const gameRecordSuccess = (responseData) => {
   })
 
   $('.user-record').text(`You have played ${numberOfGames} games.
-    You finished ${finishedGames.length} and didn't finish ${unFinishedGames}.
+    You finished ${finishedGames.length}.
     You won ${xVictory.length} games.`)
+}
+
+const listUnfinishedGames = (responseData) => {
+
+  const unFinishedGames = []
+
+  responseData.games.forEach((game) => {
+    if (!(game.over)) {
+      unFinishedGames.push(game)
+    }
+  })
+
+  unFinishedGames.forEach(game => {
+    const gameIDHtml = (`
+      <li id=game_${game.id} class=one-unfinished-game>${game.id}</li>
+      `)
+    $('.unfinished-games').append(gameIDHtml)
+  })
+
+  $('.unfinished-games').show()
 }
 
 const signOutSuccess = () => {
@@ -109,5 +127,6 @@ module.exports = {
   changePasswordRequest,
   changePasswordSuccess,
   failure,
-  gameRecordSuccess
+  gameRecordSuccess,
+  listUnfinishedGames
 }

@@ -20,6 +20,7 @@ $(() => {
   $('#sign-in-form').on('submit', userEvents.onSignIn)
   $('.game-box').on('click', gameEvents.onUserMove)
   $('#new-game').on('click', gameEvents.onNewGame)
+  $('#revisit-games').on('click', userEvents.onRevisitGame)
   $('#sign-out').on('click', userEvents.onSignOut)
   $('#change-password').on('click', userEvents.onChangePasswordRequest)
   $('#change-password-form').on('submit', userEvents.onChangePassword)
