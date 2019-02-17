@@ -1,10 +1,12 @@
 'use strict'
 
 const store = require('../store.js')
+const gameEngine = require('../../../lib/game-engine.js')
 
 const signUpRequest = () => {
   $('form').trigger('reset')
   $('#sign-up-form').show()
+  $('#sign-in-form').hide()
 }
 
 const signUpSuccess = () => {
@@ -28,7 +30,6 @@ const signInSuccess = (responseData) => {
   store.user = responseData.user
   $('#user-alert').show()
   $('#user-alert').html(`Welcome ${responseData.user.email}`)
-  $('#user-record').html('You have played these games')
   $('#sign-up').hide()
   $('#sign-in').hide()
   $('form').trigger('reset')
@@ -40,7 +41,27 @@ const signInSuccess = (responseData) => {
 
 const gameRecordSuccess = (responseData) => {
   const numberOfGames = responseData.games.length
-  $('#user-record').text(`You have played ${numberOfGames} games.`)
+
+  const finishedGames = []
+
+  responseData.games.forEach((game) => {
+    if (game.over) {
+      finishedGames.push(game)
+    }
+  })
+
+  const unFinishedGames = numberOfGames - finishedGames.length
+
+  const xVictory = []
+  const oVictory = []
+
+  finishedGames.forEach((game) => {
+    gameEngine.declareWinner(game.cells) === 'x' ? xVictory.push(game) : oVictory.push(game)
+  })
+
+  $('#user-record').text(`You have played ${numberOfGames} games.
+    You finished ${finishedGames.length} and didn't finish ${unFinishedGames}.
+    You won ${xVictory.length} games.`)
 }
 
 const signOutSuccess = () => {
