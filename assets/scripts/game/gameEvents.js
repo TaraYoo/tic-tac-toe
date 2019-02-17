@@ -47,7 +47,17 @@ const onUserMove = (event) => {
   }
 }
 
+const onRevisitOneGame = (event) => {
+  event.preventDefault()
+
+  const gameId = event.target.id.split('_')[1]
+  api.getOneGame(gameId)
+    .then(ui.revisitOneGameSuccess)
+    .catch(ui.gameFailure)
+}
+
 module.exports = {
   onNewGame,
-  onUserMove
+  onUserMove,
+  onRevisitOneGame
 }
