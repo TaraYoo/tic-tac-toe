@@ -15,34 +15,44 @@
       <div class="container my-5">
         <button type="button" class="btn btn-secondary btn-lg btn-block" id="sign-up">Sign Up</button> <br>
         <button type="button" class="btn btn-secondary btn-lg btn-block" id="sign-in">Sign In</button> <br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block hidden-elements my-3" id="new-game">New Game</button> <br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block hidden-elements my-3" id="sign-out">Sign Out</button> <br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block hidden-elements my-3" id="change-password">Change Password</button> <br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block hidden-elements my-2" id="sign-out">Sign Out</button> <br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block hidden-elements my-2" id="change-password">Change Password</button> <br>
+
+
+        <form id="sign-up-form" class="hidden-elements form-group">
+        <h2>This application is not secure. Please do not use real passwords, or any password you have used anywhere else</h2>
+        <br>
+          <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
+          <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
+          <input name="credentials[password_confirmation]" type="password" placeholder="confirm password" class="form-control"> <br>
+          <input type="submit" value="Sign Up" class="btn">
+        </form>
+
+        <form id="sign-in-form" class="hidden-elements form-group">
+          <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
+          <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
+          <input type="submit" value="Sign In" class="btn">
+        </form>
+
+        <form id="change-password-form" class="hidden-elements form-group">
+          <input name=passwords[old] type="password" placeholder="old password" class="form-control"> <br>
+          <input name=passwords[new] type="password" placeholder="new password" class="form-control"> <br>
+          <input type="submit" value="Change Password" class="btn">
+        </form>
+
+        <div class="jumbotron hidden-elements user-welcome">
+          <h1 class="display-4 user-name"></h1>
+          <p class="lead user-record"></p>
+          <hr class="my-4">
+          <p class="lead">
+            <button class="btn btn-primary btn-lg" role="button">Revisit unfinished games</button>
+            <button class="btn btn-primary btn-lg" role="button" id="new-game">Play a new game</button>
+          </p>
+        </div>
 
         <h2 id="user-alert"></h2>
         <h2 id="invalid-move"></h2>
         <p id="user-record"></p>
-
-        <form id="sign-up-form" class="hidden-elements">
-        <h2>This application is not secure. Please do not use real passwords, or any password you have used anywhere else</h2>
-        <br>
-          <input name="credentials[email]" type="email" placeholder="email">
-          <input name="credentials[password]" type="password" placeholder="password">
-          <input name="credentials[password_confirmation]" type="password" placeholder="confirm password">
-          <input type="submit" value="Sign Up">
-        </form>
-
-        <form id="sign-in-form" class="hidden-elements">
-          <input name="credentials[email]" type="email" placeholder="email">
-          <input name="credentials[password]" type="password" placeholder="password">
-          <input type="submit" value="Sign In">
-        </form>
-
-        <form id="change-password-form" class="hidden-elements">
-          <input name=passwords[old] type="password" placeholder="old password">
-          <input name=passwords[new] type="password" placeholder="new password">
-          <input type="submit" value="Change Password">
-        </form>
 
         <div class="embed-responsive embed-responsive-1by1 gamearea hidden-elements">
           <div id="game-board" class="embed-responsive-item game-board">

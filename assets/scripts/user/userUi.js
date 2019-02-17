@@ -28,8 +28,9 @@ const signInRequest = () => {
 
 const signInSuccess = (responseData) => {
   store.user = responseData.user
-  $('#user-alert').show()
-  $('#user-alert').html(`Welcome ${responseData.user.email}`)
+  const userName = store.user.email.split('@')[0]
+  $('.user-welcome').show()
+  $('.user-name').html(`Welcome ${userName}`)
   $('#sign-up').hide()
   $('#sign-in').hide()
   $('form').trigger('reset')
@@ -59,7 +60,7 @@ const gameRecordSuccess = (responseData) => {
     gameEngine.declareWinner(game.cells) === 'x' ? xVictory.push(game) : oVictory.push(game)
   })
 
-  $('#user-record').text(`You have played ${numberOfGames} games.
+  $('.user-record').text(`You have played ${numberOfGames} games.
     You finished ${finishedGames.length} and didn't finish ${unFinishedGames}.
     You won ${xVictory.length} games.`)
 }
