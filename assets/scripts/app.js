@@ -24,4 +24,5 @@ $(() => {
   $('#sign-out').on('click', userEvents.onSignOut)
   $('#change-password').on('click', userEvents.onChangePasswordRequest)
   $('#change-password-form').on('submit', userEvents.onChangePassword)
+  $('.unfinished-games').on('click', gameEvents.onRevisitOneGame)
 })

@@ -64,7 +64,6 @@ const gameRecordSuccess = (responseData) => {
 }
 
 const listUnfinishedGames = (responseData) => {
-
   const unFinishedGames = []
 
   responseData.games.forEach((game) => {
@@ -75,9 +74,10 @@ const listUnfinishedGames = (responseData) => {
 
   unFinishedGames.forEach(game => {
     const gameIDHtml = (`
-      <li id=game_${game.id} class=one-unfinished-game>${game.id}</li>
+      <button type=button id=game_${game.id} class=one-unfinished-game>${game.id}</button>
       `)
     $('.unfinished-games').append(gameIDHtml)
+    $('.one-unfinished-game').addClass('btn btn-link')
   })
 
   $('.unfinished-games').show()

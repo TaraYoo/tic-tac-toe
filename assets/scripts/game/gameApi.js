@@ -47,8 +47,19 @@ const updateGameStatus = (gameId, gameStatus) => {
   })
 }
 
+const getOneGame = (gameId) => {
+  return $.ajax({
+    url: config.apiUrl + `/games/${gameId}`,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   createGame,
   updateGamePiece,
-  updateGameStatus
+  updateGameStatus,
+  getOneGame
 }

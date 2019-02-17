@@ -12,6 +12,7 @@ const newGameSuccess = (responseData) => {
   $('#game-board').show()
   $('form').trigger('reset')
   $('form').hide()
+  $('unfinished-games').hide()
 }
 
 const addPiece = (boxData) => {
@@ -49,11 +50,34 @@ const announceTie = () => {
   $('#user-alert').html('<h2>Game ties!</h2>')
 }
 
+const showGameBoard = (gameBoard) => {
+  for (let i = 0; i < gameBoard.length; i++) {
+    $(`.game-board :nth-child(${i + 1})`).text(gameBoard[i])
+  }
+}
+
+const revisitOneGameSuccess = (responseData) => {
+  store.user.game = responseData.game
+  const gameBoard = store.user.game.cells
+  store.user.game.turn = 0
+  gameBoard.forEach(piece => {
+    if (piece) {
+      store.user.game.turn++
+    }
+  })
+
+  showGameBoard(gameBoard)
+  $('.gamearea').show()
+  $('#game-board').show()
+  $('.unfinished-games').hide()
+}
+
 module.exports = {
   addPiece,
   newGameSuccess,
   gameFailure,
   announceWinner,
   announceTie,
-  connectionLost
+  connectionLost,
+  revisitOneGameSuccess
 }
