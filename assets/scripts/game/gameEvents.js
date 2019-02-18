@@ -4,8 +4,7 @@ const api = require('./gameApi.js')
 const ui = require('./gameUi.js')
 const gameEngine = require('../../../lib/game-engine.js')
 const store = require('../store.js')
-const userUi = require('../user/userUi.js')
-const userAPI = require('../user/userApi.js')
+const opposedGameEngine = require('../../../lib/opposed-game-engine.js')
 
 const onNewGame = (event) => {
   event.preventDefault()
@@ -14,9 +13,6 @@ const onNewGame = (event) => {
   api.createGame()
     .then(ui.newGameSuccess)
     .catch(ui.gameFailure)
-  userAPI.getGameRecords()
-    .then(userUi.gameRecordSuccess)
-    .catch(ui.failure)
 }
 
 const onUserMove = (event) => {
@@ -31,7 +27,7 @@ const onUserMove = (event) => {
     // translate the box a user clicks to a corresponding index number
     gameEngine.updateBoard(boxData.id)
 
-    ui.addPiece(boxData)
+    ui.showGameBoard(gameBoard)
 
     api.updateGamePiece(gameId, targetIndex, gameBoard[targetIndex])
       .then()
@@ -42,17 +38,29 @@ const onUserMove = (event) => {
       api.updateGameStatus(gameId, true)
         .then()
         .catch(ui.connectionLost)
-      userAPI.getGameRecords()
-        .then(userUi.gameRecordSuccess)
-        .catch(ui.failure)
     } else if (gameEngine.declareTie(gameBoard)) {
       ui.announceTie()
       api.updateGameStatus(gameId, true)
         .then()
         .catch(ui.connectionLost)
-      userAPI.getGameRecords()
-        .then(userUi.gameRecordSuccess)
-        .catch(ui.failure)
+    } else {
+      opposedGameEngine.addPiece(gameBoard)
+      setTimeout(() => { ui.showGameBoard(gameBoard) }, 2000)
+      api.updateGamePiece(gameId, targetIndex, gameBoard[targetIndex])
+        .then()
+        .catch(ui.connectionLost)
+
+      if (gameEngine.declareWinner(gameBoard)) {
+        ui.announceWinner(gameEngine.declareWinner(gameBoard))
+        api.updateGameStatus(gameId, true)
+          .then()
+          .catch(ui.connectionLost)
+      } else if (gameEngine.declareTie(gameBoard)) {
+        ui.announceTie()
+        api.updateGameStatus(gameId, true)
+          .then()
+          .catch(ui.connectionLost)
+      }
     }
   }
 }

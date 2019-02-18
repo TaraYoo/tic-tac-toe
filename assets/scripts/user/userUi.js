@@ -59,8 +59,9 @@ const getProfile = responseData => {
 
   $('.total-games').text(`You played ${numberOfGames} games.`)
   $('.finished-games').text(`You finished ${finishedGames.length} games.`)
-  $('.won-games').text(`You won ${xVictory.length} games as player X.`)
+  $('.won-games').text(`You won ${xVictory.length} games as player x.`)
 
+  console.log($('.user.name').is(':visible'))
   $('.profile').show()
   $('#user-alert').hide()
   $('.gamearea').hide()

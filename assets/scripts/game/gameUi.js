@@ -20,21 +20,6 @@ const boxIdAssignment = {
   zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8
 }
 
-const addPiece = (boxData) => {
-  const gameBoard = store.user.game.cells
-  // translate the box id which is in string (i.e. 'zer', 'one'...) to numbers
-  const targetBox = boxIdAssignment[`${boxData.id}`]
-  // Move the corresponding gameBoard array piece to targetBox. game board gets updated through game engine logic
-  $(`#${boxData.id}`).text(`${gameBoard[targetBox]}`)
-  $('#user-alert').show()
-  // Each valid move increases a turn -- even numbered turns means that player O is going (since turns - player X start at 1)
-  if (store.user.game.turn % 2 === 0) {
-    $('#user-alert').text('Player X is up!')
-  } else {
-    $('#user-alert').text('Player O is up!')
-  }
-}
-
 const gameFailure = () => {
   $('#user-alert').text('Something went wrong. Please try again')
   setTimeout(() => {
@@ -62,10 +47,23 @@ const announceTie = () => {
   $('#user-alert').html('<h2>Game ties!</h2>')
 }
 
+const player = (gameBoard) => {
+  const turnPieces = gameBoard.filter(piece => piece !== '')
+  if (turnPieces.length % 2 === 0) {
+    return 'x'
+  } else {
+    return 'o'
+  }
+}
+
 const showGameBoard = (gameBoard) => {
   for (let i = 0; i < gameBoard.length; i++) {
     $(`.game-board :nth-child(${i + 1})`).text(gameBoard[i])
   }
+  const currPlayer = player(gameBoard)
+  console.log(currPlayer)
+  $('#user-alert').show()
+  $('#user-alert').text(`Player ${currPlayer} is up!`)
 }
 
 const invalidMove = function () {
@@ -97,7 +95,6 @@ const revisitOneGameSuccess = (responseData) => {
 }
 
 module.exports = {
-  addPiece,
   newGameSuccess,
   gameFailure,
   announceWinner,
@@ -105,5 +102,6 @@ module.exports = {
   connectionLost,
   revisitOneGameSuccess,
   boxIdAssignment,
-  invalidMove
+  invalidMove,
+  showGameBoard
 }
