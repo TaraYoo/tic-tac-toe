@@ -10,6 +10,7 @@ const signUpRequest = () => { // change name to displaySignUp
 }
 
 const signUpSuccess = () => {
+  $('#user-alert').empty()
   $('#sign-up-form').hide()
   $('#sign-up').hide()
   const signInGuide = `
