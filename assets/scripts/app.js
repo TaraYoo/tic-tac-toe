@@ -19,6 +19,7 @@ $(() => {
   $('#sign-in').on('click', userEvents.onSignInRequest)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
   $('.game-box').on('click', gameEvents.onUserMove)
+  $('#profile').on('click', userEvents.onProfile)
   $('#new-game').on('click', gameEvents.onNewGame)
   $('#revisit-games').on('click', userEvents.onRevisitGame)
   $('#sign-out').on('click', userEvents.onSignOut)

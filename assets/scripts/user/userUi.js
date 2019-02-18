@@ -39,9 +39,12 @@ const signInSuccess = responseData => {
   $('#sign-out').show()
   $('#new-game').show()
   $('#change-password').show()
+  $('#profile').show()
+  $('#revisit-games').show()
+  $('.profile').show()
 }
 
-const gameRecordSuccess = responseData => {
+const getProfile = responseData => {
   const numberOfGames = responseData.games.length
 
   const finishedGames = responseData.games.filter(game => game.over)
@@ -53,9 +56,15 @@ const gameRecordSuccess = responseData => {
     gameEngine.declareWinner(game.cells) === 'x' ? xVictory.push(game) : oVictory.push(game)
   })
 
-  $('.user-record').text(`You have played ${numberOfGames} games.
-    You finished ${finishedGames.length}.
-    You won ${xVictory.length} games.`)
+  $('.total-games').text(`You played ${numberOfGames} games.`)
+  $('.finished-games').text(`You finished ${finishedGames.length} games.`)
+  $('.won-games').text(`You won ${xVictory.length} games as player X.`)
+
+  $('.profile').show()
+  $('#user-alert').hide()
+  $('.gamearea').hide()
+  $('.unfinished-games').hide()
+  $('form').hide()
 }
 
 const listUnfinishedGames = responseData => {
@@ -78,6 +87,8 @@ const listUnfinishedGames = responseData => {
   })
 
   $('.unfinished-games').show()
+  $('.profile').hide()
+  $('form').hide()
 }
 
 const signOutSuccess = () => {
@@ -92,9 +103,11 @@ const signOutSuccess = () => {
   $('form').hide()
   $('#user-record').empty()
   store.user = null
-  $('.jumbotron').hide()
+  $('.profile').hide()
   $('.unfinished-games').empty()
   $('.unfinished-games').hide()
+  $('#revisit-games').hide()
+  $('#profile').hide()
 }
 
 const changePasswordRequest = () => {
@@ -104,6 +117,8 @@ const changePasswordRequest = () => {
   $('#user-alert').empty()
   $('#user-record').empty()
   $('.gamearea').hide()
+  $('.profile').hide()
+  $('.unfinished-games').hide()
 }
 
 const changePasswordSuccess = () => {
@@ -111,6 +126,8 @@ const changePasswordSuccess = () => {
   $('#user-alert').text('password changed successfully')
   $('form').trigger('reset')
   $('#change-password-form').hide()
+  $('.profile').hide()
+  $('.unfinished-games').hide()
 }
 
 const failure = () => {
@@ -130,6 +147,6 @@ module.exports = {
   changePasswordRequest,
   changePasswordSuccess,
   failure,
-  gameRecordSuccess,
+  getProfile,
   listUnfinishedGames
 }

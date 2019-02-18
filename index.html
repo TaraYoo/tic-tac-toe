@@ -12,16 +12,28 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <div class="container my-5">
-        <button type="button" class="btn btn-secondary btn-lg btn-block" id="sign-up">Sign Up</button> <br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" id="sign-in">Sign In</button> <br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block hidden-elements my-2" id="sign-out">Sign Out</button> <br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block hidden-elements my-2" id="change-password">Change Password</button> <br>
+      <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">Tic-Tac-Toe</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a href="#" class="nav-link" id="sign-up">Sign Up</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link" id="sign-in">Sign In</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link hidden-elements" id="sign-out">Sign Out</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link hidden-elements" id="change-password">Change Password</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link hidden-elements" id="new-game">Start New Game</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link hidden-elements" id="revisit-games">Retrieve Unfinished Games</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link hidden-elements" id="profile">Profile</a></li>
+          </ul>
+        </div>
+      </nav>
 
-
+      <main>
         <form id="sign-up-form" class="hidden-elements form-group">
-        <h2>This application is not secure. Please do not use real passwords, or any password you have used anywhere else</h2>
-        <br>
+          <h2 class="warning">This application is not secure. To sign up, please do not use real passwords, or any password you have used anywhere else</h2>
+          <br>
           <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
           <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
           <input name="credentials[password_confirmation]" type="password" placeholder="confirm password" class="form-control"> <br>
@@ -29,6 +41,7 @@
         </form>
 
         <form id="sign-in-form" class="hidden-elements form-group">
+          <h2>Sign In</h2>
           <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
           <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
           <input type="submit" value="Sign In" class="btn">
@@ -40,19 +53,20 @@
           <input type="submit" value="Change Password" class="btn">
         </form>
 
-        <div class="jumbotron hidden-elements user-welcome">
-          <h1 class="display-4 user-name"></h1>
-          <p class="lead user-record"></p>
-          <hr class="my-4">
-          <p class="lead">
-            <button class="btn btn-primary btn-lg" role="button" id="revisit-games">Revisit unfinished games</button>
-            <button class="btn btn-primary btn-lg" role="button" id="new-game">Play a new game</button>
-          </p>
-        </div>
+        <section class="hidden-elements profile">
+          <!-- <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div> -->
+          <h1 class="user-name"></h1>
+          <ul>
+            <li class="total-games"></li>
+            <li class="finished-games"></li>
+            <li class="won-games"></li>
+          </ul>
+        </section>
 
         <h2 id="user-alert"></h2>
         <h2 id="invalid-move"></h2>
-        <p id="user-record"></p>
 
         <div class="hidden-elements unfinished-games"></div>
 
@@ -69,6 +83,7 @@
             <div class="game-box col-4" id="eight"></div>
           </div>
         </div>
-      </div>
+      </main>
+
     </body>
 </html>

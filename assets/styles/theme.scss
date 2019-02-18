@@ -35,3 +35,28 @@
 .hidden-elements {
   display: none;
 }
+
+.warning {
+  justify-content: center;
+  max-width: 50vh;
+}
+
+body {
+  min-height: 100vh;
+}
+
+main {
+  display: flex;
+  margin-top: 20vh;
+
+  > form {
+    align-items: center;
+    display: inline-block;
+    justify-content: center;
+    margin: auto;
+  }
+}
+
+ul {
+  list-style-type: none;
+}

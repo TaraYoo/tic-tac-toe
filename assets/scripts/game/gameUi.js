@@ -13,6 +13,7 @@ const newGameSuccess = (responseData) => {
   $('form').hide()
   $('.unfinished-games').hide()
   $('.unfinished-games').empty()
+  $('.profile').hide()
 }
 
 const boxIdAssignment = {
@@ -43,6 +44,9 @@ const gameFailure = () => {
 
 const connectionLost = () => {
   $('#user-alert').text('We lost connection. Your game may not be recorded')
+  setTimeout(() => {
+    $('#user-alert').empty()
+  }, 3000)
 }
 
 const announceWinner = (winner) => {
@@ -89,6 +93,7 @@ const revisitOneGameSuccess = (responseData) => {
   $('#game-board').show()
   $('.unfinished-games').hide()
   $('.unfinished-games').empty()
+  $('.profile').hide()
 }
 
 module.exports = {

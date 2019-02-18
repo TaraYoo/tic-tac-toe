@@ -25,9 +25,9 @@ const onSignInRequest = (event) => {
   ui.signInRequest()
 }
 
-const getGameRecords = () => {
+const onProfile = () => {
   api.getGameRecords()
-    .then(ui.gameRecordSuccess)
+    .then(ui.getProfile)
     .catch(ui.failure)
 }
 
@@ -39,7 +39,7 @@ const onSignIn = (event) => {
 
   api.signIn(formData)
     .then(ui.signInSuccess)
-    .then(getGameRecords)
+    .then(onProfile)
     .catch(ui.failure)
 }
 
@@ -83,5 +83,6 @@ module.exports = {
   onSignOut,
   onChangePasswordRequest,
   onChangePassword,
-  onRevisitGame
+  onRevisitGame,
+  onProfile
 }
