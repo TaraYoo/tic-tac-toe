@@ -25,7 +25,7 @@ const onSignInRequest = (event) => {
   ui.signInRequest()
 }
 
-const onProfile = () => {
+const onProfile = (event) => {
   api.getGameRecords()
     .then(ui.getProfile)
     .catch(ui.failure)
@@ -39,7 +39,6 @@ const onSignIn = (event) => {
 
   api.signIn(formData)
     .then(ui.signInSuccess)
-    .then(onProfile)
     .catch(ui.failure)
 }
 

@@ -31,26 +31,45 @@ My personal stretch goals are:
   <li>A 'bomb' play to remove a piece, rather than add a piece (pending)</li>
   </ul>
 
-## Build status
-The app currently has functioning
- - Sign-in 
-
-## Code style
-If you're using any code style like xo, standard etc. That will help others while contributing to your project. Ex. -
-
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
-
 ## Screenshots
 Include logo/demo screenshot etc.
 
 ## Tech/framework used
-Ex. -
 
 <b>Built with</b>
-- [Electron](https://electron.atom.io)
+- [Ruby on Rails](https://rubyonrails.org/)
+- [AJAX](https://api.jquery.com/category/ajax/)
+- [JQuery](https://jquery.com/)
+- [Node.js](https://nodejs.org/en/)
+- [Github Pages](https://pages.github.com/)
 
 ## Features
-What makes your project stand out?
+- User authorization related features
+  - Sign up
+    - Shows sign-up form, and nothing else
+    - Sign up via the backend Ruby API
+    - After signing up, prompts user to sign in
+      - **This should go to the sign-in form instead of just prompting**
+  - Sign in
+    - Shows sign-in form, and nothing else
+    - Sign in via the backend Ruby API
+    - After signing in,
+      - App welcomes the user
+  - Sign Out
+    - After the user clicks sign-out form
+      - Alert user that they are signed out
+      - Hide everything except the signed out alert, sign-in button, and sign-up button
+  - Change Password
+    - Show the change password form and nothing else
+    - Keep the nav bar intact
+    - After password successfully changes, alert the user for 4 seconds
+  - Profile
+    - Shows the user profile
+    - Games played
+    - Games finished
+    - Games won as player x
+    - **This function takes too long to render. May need a spinner**
+- Game related features
 
 ## Code Example
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
