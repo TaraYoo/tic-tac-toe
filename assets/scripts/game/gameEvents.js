@@ -4,6 +4,8 @@ const api = require('./gameApi.js')
 const ui = require('./gameUi.js')
 const gameEngine = require('../../../lib/game-engine.js')
 const store = require('../store.js')
+const userUi = require('../user/userUi.js')
+const userAPI = require('../user/userApi.js')
 
 const onNewGame = (event) => {
   event.preventDefault()
@@ -12,7 +14,9 @@ const onNewGame = (event) => {
   api.createGame()
     .then(ui.newGameSuccess)
     .catch(ui.gameFailure)
-  console.log(store.user)
+  userAPI.getGameRecords()
+    .then(userUi.gameRecordSuccess)
+    .catch(ui.failure)
 }
 
 const onUserMove = (event) => {
@@ -23,7 +27,7 @@ const onUserMove = (event) => {
   if (store.user) {
     const gameBoard = store.user.game.cells
     // retrieve the current state of the game, which gets updated via the gameEngine
-    const targetIndex = gameEngine.boxIdAssignment[boxData.id]
+    const targetIndex = ui.boxIdAssignment[boxData.id]
     // translate the box a user clicks to a corresponding index number
     gameEngine.updateBoard(boxData.id)
 
@@ -38,11 +42,17 @@ const onUserMove = (event) => {
       api.updateGameStatus(gameId, true)
         .then()
         .catch(ui.connectionLost)
+      userAPI.getGameRecords()
+        .then(userUi.gameRecordSuccess)
+        .catch(ui.failure)
     } else if (gameEngine.declareTie(gameBoard)) {
       ui.announceTie()
       api.updateGameStatus(gameId, true)
         .then()
         .catch(ui.connectionLost)
+      userAPI.getGameRecords()
+        .then(userUi.gameRecordSuccess)
+        .catch(ui.failure)
     }
   }
 }

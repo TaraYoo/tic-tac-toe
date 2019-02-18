@@ -1,7 +1,6 @@
 'use strict'
 
 const store = require('../store.js')
-const gameEngine = require('../../../lib/game-engine.js')
 
 const newGameSuccess = (responseData) => {
   store.user.game = responseData.game
@@ -12,13 +11,18 @@ const newGameSuccess = (responseData) => {
   $('#game-board').show()
   $('form').trigger('reset')
   $('form').hide()
-  $('unfinished-games').hide()
+  $('.unfinished-games').hide()
+  $('.unfinished-games').empty()
+}
+
+const boxIdAssignment = {
+  zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8
 }
 
 const addPiece = (boxData) => {
   const gameBoard = store.user.game.cells
   // translate the box id which is in string (i.e. 'zer', 'one'...) to numbers
-  const targetBox = gameEngine.boxIdAssignment[`${boxData.id}`]
+  const targetBox = boxIdAssignment[`${boxData.id}`]
   // Move the corresponding gameBoard array piece to targetBox. game board gets updated through game engine logic
   $(`#${boxData.id}`).text(`${gameBoard[targetBox]}`)
   $('#user-alert').show()
@@ -32,6 +36,9 @@ const addPiece = (boxData) => {
 
 const gameFailure = () => {
   $('#user-alert').text('Something went wrong. Please try again')
+  setTimeout(() => {
+    $('#user-alert').empty()
+  }, 3000)
 }
 
 const connectionLost = () => {
@@ -47,6 +54,7 @@ const announceWinner = (winner) => {
 }
 
 const announceTie = () => {
+  $('#game-board').hide()
   $('#user-alert').html('<h2>Game ties!</h2>')
 }
 
@@ -56,7 +64,17 @@ const showGameBoard = (gameBoard) => {
   }
 }
 
+const invalidMove = function () {
+  $('#invalid-move').html('Invalid Move')
+
+  setTimeout(() => {
+    $('#invalid-move').html('')
+  }, 2000)
+}
+
 const revisitOneGameSuccess = (responseData) => {
+  $('#user-alert').empty()
+  $('#user-alert').hide()
   store.user.game = responseData.game
   const gameBoard = store.user.game.cells
   store.user.game.turn = 0
@@ -70,6 +88,7 @@ const revisitOneGameSuccess = (responseData) => {
   $('.gamearea').show()
   $('#game-board').show()
   $('.unfinished-games').hide()
+  $('.unfinished-games').empty()
 }
 
 module.exports = {
@@ -79,5 +98,7 @@ module.exports = {
   announceWinner,
   announceTie,
   connectionLost,
-  revisitOneGameSuccess
+  revisitOneGameSuccess,
+  boxIdAssignment,
+  invalidMove
 }

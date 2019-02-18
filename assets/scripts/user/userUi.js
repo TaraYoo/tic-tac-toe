@@ -3,7 +3,7 @@
 const store = require('../store.js')
 const gameEngine = require('../../../lib/game-engine.js')
 
-const signUpRequest = () => {
+const signUpRequest = () => { // change name to displaySignUp
   $('form').trigger('reset')
   $('#sign-up-form').show()
   $('#sign-in-form').hide()
@@ -19,14 +19,15 @@ const signUpSuccess = () => {
   $('form').trigger('reset')
 }
 
-const signInRequest = () => {
+const signInRequest = () => { // change name to displaySignIn
+  // Have either sign up or sign in form visible at the start
   $('form').trigger('reset')
   $('#sign-in-form').show()
   $('#sign-up-form').hide()
   $('#user-alert').empty()
 }
 
-const signInSuccess = (responseData) => {
+const signInSuccess = responseData => {
   store.user = responseData.user
   const userName = store.user.email.split('@')[0]
   $('.user-welcome').show()
@@ -40,21 +41,15 @@ const signInSuccess = (responseData) => {
   $('#change-password').show()
 }
 
-const gameRecordSuccess = (responseData) => {
+const gameRecordSuccess = responseData => {
   const numberOfGames = responseData.games.length
 
-  const finishedGames = []
-
-  responseData.games.forEach((game) => {
-    if (game.over) {
-      finishedGames.push(game)
-    }
-  })
+  const finishedGames = responseData.games.filter(game => game.over)
 
   const xVictory = []
   const oVictory = []
 
-  finishedGames.forEach((game) => {
+  finishedGames.forEach(game => {
     gameEngine.declareWinner(game.cells) === 'x' ? xVictory.push(game) : oVictory.push(game)
   })
 
@@ -63,16 +58,18 @@ const gameRecordSuccess = (responseData) => {
     You won ${xVictory.length} games.`)
 }
 
-const listUnfinishedGames = (responseData) => {
-  const unFinishedGames = []
-
-  responseData.games.forEach((game) => {
-    if (!(game.over)) {
-      unFinishedGames.push(game)
+const listUnfinishedGames = responseData => {
+  const unfinishedGames = []
+  $('#user-alert').empty()
+  $('#user-alert').hide()
+  $('.gamearea').hide()
+  responseData.games.forEach(game => {
+    if (!game.over) {
+      unfinishedGames.push(game)
     }
   })
 
-  unFinishedGames.forEach(game => {
+  unfinishedGames.forEach(game => {
     const gameIDHtml = (`
       <button type=button id=game_${game.id} class=one-unfinished-game>${game.id}</button>
       `)
@@ -95,6 +92,9 @@ const signOutSuccess = () => {
   $('form').hide()
   $('#user-record').empty()
   store.user = null
+  $('.jumbotron').hide()
+  $('.unfinished-games').empty()
+  $('.unfinished-games').hide()
 }
 
 const changePasswordRequest = () => {
@@ -115,6 +115,9 @@ const changePasswordSuccess = () => {
 
 const failure = () => {
   $('#user-alert').text('Something went wrong. Please try again')
+  setTimeout(() => {
+    $('#user-alert').empty()
+  }, 4000)
   $('form').trigger('reset')
 }
 
