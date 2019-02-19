@@ -1,7 +1,7 @@
 'use strict'
 
 const api = require('./gameApi.js')
-const ui = require('./gameUi.js')
+const ui = require('./easyUi.js')
 const gameEngine = require('../../../lib/game-engine.js')
 const store = require('../store.js')
 const opposedGameEngine = require('../../../lib/opposed-game-engine.js')

@@ -28,6 +28,7 @@ $(() => {
   $('#game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
 
   $('#easy').on('click', easy.onEasy)
+  $('#game-board').on('click', '.easy-box', easy.onUserMove)
 
   $('#revisit-games').on('click', userEvents.onRevisitGame)
   $('#sign-out').on('click', userEvents.onSignOut)
