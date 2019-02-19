@@ -25,7 +25,7 @@ const makePlayerWait = () => {
   $('#game-board').children().removeClass('hot-seat-box')
   setTimeout(() => {
     $('#game-board').children().addClass('easy-box')
-  }, 1999)
+  }, 2001)
 }
 
 const playerTurn = () => {
