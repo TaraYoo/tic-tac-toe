@@ -23,10 +23,7 @@ $(() => {
   $('#sign-in').on('click', userEvents.onSignInRequest)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
   $('#profile').on('click', userEvents.onProfile)
-  // test moves delete later
-  $('#tester').on('click', commonEvents.onNewGame)
-  $('.game-box').on('click', commonEvents.onUserMove)
-  // test moves delete later
+
   $('#hot-seat').on('click', hotSeat.onHotSeat)
   $('#game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
 

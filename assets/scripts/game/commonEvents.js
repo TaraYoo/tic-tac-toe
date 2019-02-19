@@ -6,14 +6,6 @@ const assignments = require('../assignments.js')
 const store = require('../store.js')
 const gameEngine = require('../../../lib/commonEngine.js')
 
-const onNewGame = (event) => {
-  event.preventDefault()
-
-  api.createGame()
-    .then(ui.callGameSuccess)
-    .catch(ui.gameFailure)
-}
-
 // log any move made by a user and show the results on screen
 const onUserMove = (event) => {
   event.preventDefault()
@@ -33,10 +25,11 @@ const onUserMove = (event) => {
     api.updateGamePiece(gameId, targetIndex, gameBoard[targetIndex])
       .then()
       .catch(ui.gameFailure)
+    // after updating the both the local remote board above,
+    // check the gameboard to see if there is a winner in indvidual game mode event handlers
   }
 }
 
 module.exports = {
-  onNewGame,
   onUserMove
 }
