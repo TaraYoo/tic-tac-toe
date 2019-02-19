@@ -34,12 +34,9 @@ const signInSuccess = responseData => {
   $('form').trigger('reset')
   $('.user-name').html(`Welcome ${userName}`)
   $('.user-welcome').show()
-  $('#sign-out').show()
-  $('#new-game').show()
-  $('#change-password').show()
-  $('#profile').show()
-  $('#revisit-games').show()
+  $('.post-sign-in').show()
   $('.profile').show()
+  $('.intro').show()
 }
 
 const getProfile = responseData => {
@@ -62,6 +59,7 @@ const getProfile = responseData => {
   $('#user-alert').hide()
   $('.post-sign-in').show()
   $('.profile').show()
+  $('.intro').hide()
 }
 
 const listUnfinishedGames = responseData => {

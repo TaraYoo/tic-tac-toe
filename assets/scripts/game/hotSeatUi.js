@@ -7,15 +7,16 @@ const commonUi = require('./commonUi.js')
 const hotSeatSuccess = () => {
   $('#game-board').children().removeClass('easy-box')
   $('#game-board').children().addClass('hot-seat-box')
+  $('.game-mode').show()
   $('.game-mode').text('Hot seat mode - pass the screen to your opponent')
-  console.log('hot seat fired')
 }
 
 const announceWinner = (winner) => {
   const announcement = `
-    <h2>Player ${winner} wins!</h2>
+    <h2>Player ${winner} wins! Play a new game or finish an old one. This board will stop responding.</h2>
   `
-  $('#game-board').hide()
+  $('#game-board').children().removeClass('easy-box')
+  $('#game-board').children().removeClass('hot-seat-box')
   $('#user-alert').html(announcement)
 }
 
@@ -45,6 +46,7 @@ const revisitOneGameSuccess = (responseData) => {
   $('.unfinished-games').hide()
   $('.unfinished-games').empty()
   $('.profile').hide()
+  $('.game-mode').show()
 }
 
 module.exports = {

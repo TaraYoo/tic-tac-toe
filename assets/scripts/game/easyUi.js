@@ -8,18 +8,16 @@ const easySuccess = responseData => {
   $('.game-mode').text('Easy mode - Please give the computer some time to think')
 }
 
-const announceWinner = winner => {
-  let announcement
-  if (winner === 'x') {
-    announcement = '<h2>You win as player x!</h2>'
-    $('#user-alert').html(announcement)
-  } else {
-    announcement = '<h2>Computer wins!</h2>'
-    setTimeout(() => {
-      $('#user-alert').html(announcement)
-    }, 2500)
-  }
-  $('#game-board').hide()
+const playerWin = () => {
+  $('#user-alert').html('You win as player x! Play a new game or finish an old one. This board will stop responding.')
+  $('#game-board').children().removeClass('easy-box')
+  $('#game-board').children().removeClass('hot-seat-box')
+}
+
+const computerWin = () => {
+  $('#user-alert').html('Computer wins! Play a new game or finish an old one. This board will stop responding.')
+  $('#game-board').children().removeClass('easy-box')
+  $('#game-board').children().removeClass('hot-seat-box')
 }
 
 const playerTurn = () => {
@@ -43,7 +41,8 @@ const computerMove = gameBoard => {
 
 module.exports = {
   easySuccess,
-  announceWinner,
+  playerWin,
+  computerWin,
   playerTurn,
   computerMove,
   computerTurn

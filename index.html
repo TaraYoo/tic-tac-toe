@@ -58,6 +58,13 @@
             <span class="sr-only">Loading...</span>
           </div> -->
           <h1 class="user-name"></h1>
+          <p class="intro hidden-elements">
+            Please click Start New Game above to start a new game. There are two options - Hot Seat, and Easy <br>
+            Play with a friend next to you, sharing one device, in the Hot Seat mode. <br>
+            Or beat a computer at tic-tac-toe in Easy mode <br>
+            You can also revisit old games by clicking Retrieve Unfinished Games. You can only play old games in Hot Seat mode <br>
+            If you're not interested in playing, check your stats in your profile.
+          </p>
           <ul>
             <li class="total-games"></li>
             <li class="finished-games"></li>
@@ -68,6 +75,7 @@
         <h2 id="user-alert"></h2>
         <h2 id="invalid-move"></h2>
         <div class="game-mode hidden-elements"></div> <br>
+        <h3 id="game-id hidden-elements"></h3>
 
         <div class="hidden-elements unfinished-games"></div>
 
@@ -83,7 +91,6 @@
               <div class="modal-body">
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="hot-seat">Hot Seat</button>
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="easy">Computer: Easy</button>
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="less-easy">Computer: Less Easy</button>
               </div>
             </div>
           </div>

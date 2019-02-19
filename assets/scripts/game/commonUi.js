@@ -25,6 +25,7 @@ const callGameSuccess = (responseData) => {
   showGameBoard(gameBoard)
   $('.gamearea').show()
   $('#game-board').show()
+  $('#game-id').text(`${store.user.game.id}`)
 }
 
 const invalidMove = function () {
@@ -36,8 +37,9 @@ const invalidMove = function () {
 }
 
 const announceTie = () => {
-  $('#game-board').hide()
-  $('#user-alert').html('<h2>Game ties!</h2>')
+  $('#game-board').children().removeClass('easy-box')
+  $('#game-board').children().removeClass('hot-seat-box')
+  $('#user-alert').html('Game Ties! Play a new game or finish an old one. This board will stop responding')
 }
 
 const gameFailure = () => {
