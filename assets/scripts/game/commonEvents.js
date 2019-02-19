@@ -2,6 +2,7 @@
 
 const api = require('./gameApi.js')
 const ui = require('./commonUi.js')
+const hotSeatUi = require('./hotSeatUi.js')
 const assignments = require('../assignments.js')
 const store = require('../store.js')
 const gameEngine = require('../../../lib/commonEngine.js')
@@ -30,6 +31,17 @@ const onUserMove = (event) => {
   }
 }
 
+const onRevisitOneGame = (event) => {
+  event.preventDefault()
+
+  const gameId = event.target.id.split('_')[1]
+  api.getOneGame(gameId)
+    .then(ui.revisitOneGameSuccess)
+    .then(hotSeatUi.hotSeatSuccess)
+    .catch(ui.gameFailure)
+}
+
 module.exports = {
-  onUserMove
+  onUserMove,
+  onRevisitOneGame
 }

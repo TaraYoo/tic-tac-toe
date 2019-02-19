@@ -1,113 +1,50 @@
 'use strict'
 
-const store = require('../store.js')
+const commonUi = require('./commonUi.js')
 
-const newGameSuccess = (responseData) => {
-  store.user.game = responseData.game
-  store.user.game.turn = 0
-  $('#user-alert').empty()
-  $('.gamearea').show()
-  $('.game-box').empty()
+const easySuccess = responseData => {
+  $('#game-board').children().removeClass('hot-seat-box')
   $('#game-board').children().addClass('easy-box')
-  $('#game-board').show()
-  $('form').trigger('reset')
-  $('form').hide()
-  $('.unfinished-games').hide()
-  $('.unfinished-games').empty()
-  $('.profile').hide()
   $('.game-mode').text('Easy mode - Please give the computer some time to think')
 }
 
-const boxIdAssignment = {
-  zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8
-}
-
-const gameFailure = () => {
-  $('#user-alert').text('Something went wrong. Please try again')
-  setTimeout(() => {
-    $('#user-alert').empty()
-  }, 3000)
-}
-
-const connectionLost = () => {
-  $('#user-alert').text('We lost connection. Your game may not be recorded')
-  setTimeout(() => {
-    $('#user-alert').empty()
-  }, 3000)
-}
-
-const announceWinner = (winner) => {
-  const announcement = `
-    <h2>Player ${winner} wins!</h2>
-  `
-  $('#game-board').hide()
-  $('#user-alert').html(announcement)
-}
-
-const announceTie = () => {
-  $('#game-board').hide()
-  $('#user-alert').html('<h2>Game ties!</h2>')
-}
-
-const player = (gameBoard) => {
-  const turnPieces = gameBoard.filter(piece => piece !== '')
-  if (turnPieces.length % 2 === 0) {
-    return 'x'
+const announceWinner = winner => {
+  let announcement
+  if (winner === 'x') {
+    announcement = '<h2>You win as player x!</h2>'
+    $('#user-alert').html(announcement)
   } else {
-    return 'o'
+    announcement = '<h2>Computer wins!</h2>'
+    setTimeout(() => {
+      $('#user-alert').html(announcement)
+    }, 2500)
   }
+  $('#game-board').hide()
 }
 
-const showGameBoard = (gameBoard) => {
-  for (let i = 0; i < gameBoard.length; i++) {
-    $(`.game-board :nth-child(${i + 1})`).text(gameBoard[i])
-  }
-  const currPlayer = player(gameBoard)
+const playerTurn = () => {
   $('#user-alert').show()
-
-  if (currPlayer === 'x') {
-    $('#user-alert').text("You're up!")
-  } else {
-    $('#user-alert').text('Computer is up!')
-  }
+  $('#user-alert').text("You're up!")
 }
 
-const invalidMove = function () {
-  $('#invalid-move').html('Invalid Move')
-
+const computerTurn = () => {
+  $('#user-alert').show()
+  $('#user-alert').text('Computer is up!')
   setTimeout(() => {
-    $('#invalid-move').html('')
+    $('#user-alert').text("You're up!")
+  }, 2100)
+}
+
+const computerMove = gameBoard => {
+  setTimeout(() => {
+    commonUi.showGameBoard(gameBoard)
   }, 2000)
 }
 
-const revisitOneGameSuccess = (responseData) => {
-  $('#user-alert').empty()
-  $('#user-alert').hide()
-  store.user.game = responseData.game
-  const gameBoard = store.user.game.cells
-  store.user.game.turn = 0
-  gameBoard.forEach(piece => {
-    if (piece) {
-      store.user.game.turn++
-    }
-  })
-
-  showGameBoard(gameBoard)
-  $('.gamearea').show()
-  $('#game-board').show()
-  $('.unfinished-games').hide()
-  $('.unfinished-games').empty()
-  $('.profile').hide()
-}
-
 module.exports = {
-  newGameSuccess,
-  gameFailure,
+  easySuccess,
   announceWinner,
-  announceTie,
-  connectionLost,
-  revisitOneGameSuccess,
-  boxIdAssignment,
-  invalidMove,
-  showGameBoard
+  playerTurn,
+  computerMove,
+  computerTurn
 }

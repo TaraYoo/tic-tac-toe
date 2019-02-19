@@ -24,6 +24,7 @@ const callGameSuccess = (responseData) => {
   $('.profile').hide()
   showGameBoard(gameBoard)
   $('.gamearea').show()
+  $('#game-board').show()
 }
 
 const invalidMove = function () {

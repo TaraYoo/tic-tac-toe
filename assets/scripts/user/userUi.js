@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store.js')
-const gameEngine = require('../../../lib/game-engine.js')
+const gameEngine = require('../../../lib/commonEngine.js')
 
 const signUpRequest = () => { // change name to displaySignUp
   $('form').trigger('reset')

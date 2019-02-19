@@ -9,7 +9,18 @@ const winConditions = [
   [1, 4, 7], [0, 4, 8], [6, 7, 8], [0, 3, 6]
 ]
 
+const player = gameBoard => {
+  // count the number of pieces on the board to calculate player turn
+  const turnPieces = gameBoard.filter(piece => piece !== '')
+  if (turnPieces.length % 2 === 0) {
+    return 'x'
+  } else {
+    return 'o'
+  }
+}
+
 module.exports = {
   boxIdAssignment,
-  winConditions
+  winConditions,
+  player
 }

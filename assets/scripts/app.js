@@ -10,7 +10,6 @@
 // email: scrap@baji.com
 // password: pupper
 
-const gameEvents = require('./game/gameEvents')
 const userEvents = require('./user/userEvents')
 const easy = require('./game/easyEvents')
 const hotSeat = require('./game/hotSeatEvents')
@@ -23,16 +22,19 @@ $(() => {
   $('#sign-in').on('click', userEvents.onSignInRequest)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
   $('#profile').on('click', userEvents.onProfile)
-
-  $('#hot-seat').on('click', hotSeat.onHotSeat)
-  $('#game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
-
-  $('#easy').on('click', easy.onEasy)
-  $('#game-board').on('click', '.easy-box', easy.onUserMove)
-
-  $('#revisit-games').on('click', userEvents.onRevisitGame)
   $('#sign-out').on('click', userEvents.onSignOut)
   $('#change-password').on('click', userEvents.onChangePasswordRequest)
   $('#change-password-form').on('submit', userEvents.onChangePassword)
-  $('.unfinished-games').on('click', commonEvents.onNewGame)
+
+  // hot seat mode related game activities
+  $('#hot-seat').on('click', hotSeat.onHotSeat)
+  $('#game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
+
+  // easy mode related game activities - remaining bug: user message
+  $('#easy').on('click', easy.onEasy)
+  $('#game-board').on('click', '.easy-box', easy.onUserMove)
+
+  // revisiting related game activities
+  $('#revisit-games').on('click', userEvents.onRevisitGame)
+  $('.unfinished-games').on('click', hotSeat.onRevisitOneGame)
 })
