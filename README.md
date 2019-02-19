@@ -69,7 +69,14 @@ Include logo/demo screenshot etc.
     - Games finished
     - Games won as player x
     - **This function takes too long to render. May need a spinner**
+  - Revisit unfinished games
+    - Make a GET request to the API to list all games the user hasn't finished
+    - List the unfinished game IDs as buttons
 - Game related features
+  - Add new game
+    - Modal pops up with a form:
+      - Game mode - hot seat / against computer
+      - Computer mode - easy vs less easy
 
 ## Code Example
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
