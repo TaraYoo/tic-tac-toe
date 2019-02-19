@@ -20,6 +20,14 @@ const computerWin = () => {
   $('#game-board').children().removeClass('hot-seat-box')
 }
 
+const makePlayerWait = () => {
+  $('#game-board').children().removeClass('easy-box')
+  $('#game-board').children().removeClass('hot-seat-box')
+  setTimeout(() => {
+    $('#game-board').children().addClass('easy-box')
+  }, 1999)
+}
+
 const playerTurn = () => {
   $('#user-alert').show()
   $('#user-alert').text("You're up!")
@@ -45,5 +53,6 @@ module.exports = {
   computerWin,
   playerTurn,
   computerMove,
-  computerTurn
+  computerTurn,
+  makePlayerWait
 }

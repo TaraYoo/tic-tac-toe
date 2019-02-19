@@ -44,6 +44,7 @@ const onUserMove = (event) => {
       commonUi.announceTie() // tie will always come from X, the user
     } else { // computer makes a move only if the game isn't over yet
       // computer makes a move
+      ui.makePlayerWait()
       easyEngine.computerMove(gameBoard)
       // update the UI after a two second delay to make it look like the computer is thinking
       ui.computerMove(gameBoard)
