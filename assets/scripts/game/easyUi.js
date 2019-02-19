@@ -70,7 +70,6 @@ const showGameBoard = (gameBoard) => {
   } else {
     $('#user-alert').text('Computer is up!')
   }
-  console.log('showGameBoardFired')
 }
 
 const invalidMove = function () {

@@ -14,16 +14,19 @@ const gameEvents = require('./game/gameEvents')
 const userEvents = require('./user/userEvents')
 const easy = require('./game/easyEvents')
 const hotSeat = require('./game/hotSeatEvents')
+const commonEvents = require('./game/commonEvents')
 
 $(() => {
+  // user auth related events
   $('#sign-up').on('click', userEvents.onSignUpRequest)
   $('#sign-up-form').on('submit', userEvents.onSignUp)
   $('#sign-in').on('click', userEvents.onSignInRequest)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
   $('#profile').on('click', userEvents.onProfile)
-
-  $('#new-game').on('click', gameEvents.onNewGame)
-
+  // test moves delete later
+  $('#tester').on('click', commonEvents.onNewGame)
+  $('.game-box').on('click', commonEvents.onUserMove)
+  // test moves delete later
   $('#hot-seat').on('click', hotSeat.onHotSeat)
   $('#game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
 
@@ -34,5 +37,5 @@ $(() => {
   $('#sign-out').on('click', userEvents.onSignOut)
   $('#change-password').on('click', userEvents.onChangePasswordRequest)
   $('#change-password-form').on('submit', userEvents.onChangePassword)
-  $('.unfinished-games').on('click', gameEvents.onRevisitOneGame)
+  $('.unfinished-games').on('click', commonEvents.onNewGame)
 })
