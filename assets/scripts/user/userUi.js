@@ -59,7 +59,6 @@ const getProfile = responseData => {
   $('#user-alert').hide()
   $('.post-sign-in').show()
   $('.profile').show()
-  $('.intro').hide()
 }
 
 const listUnfinishedGames = responseData => {
