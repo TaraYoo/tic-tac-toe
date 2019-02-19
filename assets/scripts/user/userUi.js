@@ -66,6 +66,7 @@ const listUnfinishedGames = responseData => {
   const unfinishedGames = []
   $('#user-alert').empty()
   $('#user-alert').hide()
+  $('.unfinished-games').empty()
   $('.gamearea').hide()
   responseData.games.forEach(game => {
     if (!game.over) {
