@@ -12,15 +12,23 @@
 
 const gameEvents = require('./game/gameEvents')
 const userEvents = require('./user/userEvents')
+const easy = require('./game/easyEvents')
+const hotSeat = require('./game/hotSeatEvents')
 
 $(() => {
   $('#sign-up').on('click', userEvents.onSignUpRequest)
   $('#sign-up-form').on('submit', userEvents.onSignUp)
   $('#sign-in').on('click', userEvents.onSignInRequest)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
-  $('.game-box').on('click', gameEvents.onUserMove)
   $('#profile').on('click', userEvents.onProfile)
+
   $('#new-game').on('click', gameEvents.onNewGame)
+
+  $('#hot-seat').on('click', hotSeat.onHotSeat)
+  $('#game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
+
+  $('#easy').on('click', easy.onEasy)
+
   $('#revisit-games').on('click', userEvents.onRevisitGame)
   $('#sign-out').on('click', userEvents.onSignOut)
   $('#change-password').on('click', userEvents.onChangePasswordRequest)

@@ -83,9 +83,9 @@ const listUnfinishedGames = responseData => {
     $('.one-unfinished-game').addClass('btn btn-link')
   })
 
+  $('.hidden-elements').hide()
   $('.unfinished-games').show()
-  $('.profile').hide()
-  $('form').hide()
+  $('.post-sign-in').show()
 }
 
 const signOutSuccess = () => {

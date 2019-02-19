@@ -23,7 +23,7 @@
             <li class="nav-item active"><a href="#" class="nav-link" id="sign-in">Sign In</a></li>
             <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="sign-out">Sign Out</a></li>
             <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="change-password">Change Password</a></li>
-            <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="new-game">Start New Game</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="new-game" data-toggle="modal" data-target="#exampleModal">Start New Game</a></li>
             <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="revisit-games">Retrieve Unfinished Games</a></li>
             <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="profile">Profile</a></li>
           </ul>
@@ -70,6 +70,25 @@
 
         <div class="hidden-elements unfinished-games"></div>
 
+        <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Choose your game mode</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="hot-seat">Hot Seat</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="easy">Computer: Easy</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="less-easy">Computer: Less Easy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-mode"></div>
         <div class="embed-responsive embed-responsive-1by1 gamearea hidden-elements">
           <div id="game-board" class="embed-responsive-item game-board">
             <div class="game-box col-4" id="zero"></div>
