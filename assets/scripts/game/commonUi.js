@@ -14,18 +14,18 @@ const showGameBoard = (gameBoard) => {
 const callGameSuccess = (responseData) => {
   store.user.game = responseData.game
   const gameBoard = store.user.game.cells
-  $('.pre-sign-in').hide()
+  $('.on-load').hide()
   $('.post-sign-in').show()
   $('form').trigger('reset')
   $('form').hide()
-  $('#user-alert').empty()
   $('#invalid-move').empty()
   $('.unfinished-games').empty()
   $('.profile').hide()
   showGameBoard(gameBoard)
+  $('#game-id').text(`Playing Game #${store.user.game.id}`)
+  $('.user-communication').show()
   $('.gamearea').show()
-  $('#game-board').show()
-  $('#game-id').text(`${store.user.game.id}`)
+  $('.game-board').show()
 }
 
 const invalidMove = function () {
@@ -37,8 +37,8 @@ const invalidMove = function () {
 }
 
 const announceTie = () => {
-  $('#game-board').children().removeClass('easy-box')
-  $('#game-board').children().removeClass('hot-seat-box')
+  $('.game-board').children().removeClass('easy-box')
+  $('.game-board').children().removeClass('hot-seat-box')
   $('#user-alert').html('Game Ties! Play a new game or finish an old one. This board will stop responding')
 }
 
@@ -49,6 +49,7 @@ const gameFailure = () => {
   setTimeout(() => {
     $('#user-alert').html('')
   }, 5000)
+  $('.user-communication').show()
 }
 
 module.exports = {

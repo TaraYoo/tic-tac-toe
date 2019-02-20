@@ -5,21 +5,21 @@ const assignments = require('../assignments.js')
 const commonUi = require('./commonUi.js')
 
 const hotSeatSuccess = () => {
-  $('#game-board').children().removeClass('easy-box')
-  $('#game-board').children().addClass('hot-seat-box')
-  $('.game-mode').show()
-  $('.game-mode').text('Hot seat mode - pass the screen to your opponent.')
+  $('.game-board').children().removeClass('easy-box')
+  $('.game-board').children().addClass('hot-seat-box')
+  $('#game-mode').text('Hot seat mode - pass the screen to your opponent.')
   $('#user-alert').text('Player x goes first')
   $('#user-alert').show()
-  $('.intro').hide()
+  $('.profile').hide()
+  $('.unfinished-games').hide()
 }
 
 const announceWinner = (winner) => {
   const announcement = `
     <h2>Player ${winner} wins! Play a new game or finish an old one. This board will stop responding.</h2>
   `
-  $('#game-board').children().removeClass('easy-box')
-  $('#game-board').children().removeClass('hot-seat-box')
+  $('.game-board').children().removeClass('easy-box')
+  $('.game-board').children().removeClass('hot-seat-box')
   $('#user-alert').html(announcement)
 }
 
@@ -31,7 +31,7 @@ const announcePlayer = (gameBoard) => {
 
 const revisitOneGameSuccess = (responseData) => {
   $('#user-alert').empty()
-  $('#user-alert').hide()
+  $('.user-communication').show()
   store.user.game = responseData.game
   const gameBoard = store.user.game.cells
   store.user.game.turn = 0
@@ -45,7 +45,8 @@ const revisitOneGameSuccess = (responseData) => {
   hotSeatSuccess()
   $('.game-board').children().removeClass('easy-box')
   $('.gamearea').show()
-  $('#game-board').show()
+  $('.game-board').show()
+  $('.game-board').children().css('display: block')
   $('.unfinished-games').hide()
   $('.unfinished-games').empty()
   $('.profile').hide()

@@ -108,11 +108,12 @@ const changePasswordRequest = () => {
   $('.post-sign-in').show()
   $('form').trigger('reset')
   $('#change-password-form').show()
-  $('#user-communication').hide()
+  $('.user-communication').hide()
   $('.profile').hide()
   $('.unfinished-games').empty()
   $('.unfinished-games').hide()
   $('.col-4').empty()
+  $('.game-board').hide()
 }
 
 const changePasswordSuccess = () => {

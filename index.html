@@ -13,20 +13,30 @@
     </head>
     <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="navbar-brand">Tic Tac Toe</div>
-        <button class="navbar-toggler post-sign-in" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#">Tic Tac Toe</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <section class="collapse navbar-collapse on-sign-in" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto post-sign-in">
-            <li class="nav-item active"><a href="#" class="nav-link post-sign-in" id="sign-out">Sign Out</a></li>
-             <li class="nav-item active"><a href="#" class="nav-link post-sign-in" id="change-password">Change Password</a></li>
-             <li class="nav-item active"><a href="#" class="nav-link post-sign-in" id="new-game" data-toggle="modal" data-target="#selectGameModal">Start New Game</a></li>
-             <li class="nav-item active"><a href="#" class="nav-link post-sign-in" id="revisit-games">Retrieve Unfinished Games</a></li>
-             <li class="nav-item active"><a href="#" class="nav-link post-sign-in" id="profile">Profile</a></li>
-          </ul>
-        </section>
-      </nav> <br>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="sign-out">Sign Out <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="change-password">Change Password <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="new-game" data-toggle="modal" data-target="#selectGameModal">Start New Game <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="revisit-games">Retrieve Unfinished Games <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="profile">Profile <span class="sr-only">(current)</span></a>
+            </li>
+      </nav>
+     <br>
 
       <section class="on-load">
         <button class="btn btn-secondary btn-lg" data-toggle="collapse" href="#sign-up-form" id="sign-up-button" type="button">
@@ -80,10 +90,10 @@
 
 
       <section class="user-communication">
-        <p id="user-alert">User Alert</p>
-        <p id="invalid-move">Invalid Move</p>
-        <p id="game-mode">Game Mode</p>
-        <p id="game-id">Game ID</p>
+        <p id="user-alert"></p>
+        <p id="invalid-move"></p>
+        <p id="game-mode"></p>
+        <p id="game-id"></p>
       </section>
 
       <section class="profile">
@@ -107,15 +117,15 @@
       <main>
         <div class="embed-responsive embed-responsive-1by1 gamearea">
           <div class="embed-responsive-item game-board">
-            <div class="col-4"></div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
+            <div class="col-4" id="zero"></div>
+            <div class="col-4" id="one"></div>
+            <div class="col-4" id="two"></div>
+            <div class="col-4" id="three"></div>
+            <div class="col-4" id="four"></div>
+            <div class="col-4" id="five"></div>
+            <div class="col-4" id="six"></div>
+            <div class="col-4" id="seven"></div>
+            <div class="col-4" id="eight"></div>
           </div>
         </div>
       </main>

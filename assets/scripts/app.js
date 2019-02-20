@@ -25,11 +25,11 @@ $(() => {
 
   // hot seat mode related game activities
   $('#hot-seat').on('click', hotSeat.onHotSeat)
-  $('#game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
+  $('.game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
 
   // easy mode related game activities - remaining bug: user message
   $('#easy').on('click', easy.onEasy)
-  $('#game-board').on('click', '.easy-box', easy.onUserMove)
+  $('.game-board').on('click', '.easy-box', easy.onUserMove)
 
   // revisiting related game activities
   $('#revisit-games').on('click', userEvents.onRevisitGame)

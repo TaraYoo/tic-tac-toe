@@ -42,8 +42,12 @@ body {
 
   nav {
     color: $whitesmoke;
-    font-size: $nav-font;
+    justify-content: flex-end;
     position: absolute;
+
+    * {
+      color: $whitesmoke;
+    }
 
     .navbar-brand {
       font-size: $nav-brand;
@@ -56,9 +60,13 @@ body {
 
   main {
     align-items: center;
-    display: none; //main will toggle between display:flex and none
+    display: flex;
     justify-content: center;
     // styling guide from https://medium.freecodecamp.org/how-to-center-things-with-style-in-css-dc87b7542689
+
+    .game-board {
+      display: none;
+    }
   }
 
   footer {

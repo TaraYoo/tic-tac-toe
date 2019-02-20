@@ -20,7 +20,6 @@ const onHotSeat = (event) => {
 const onUserMove = (event) => {
   // show the user's move on screen and update both local and remote game boards
   commonEvents.onUserMove(event)
-
   // after each move, check if game is tied or has a winner
   if (store.user) {
     const gameBoard = store.user.game.cells
