@@ -42,11 +42,12 @@ const onUserMove = (event) => {
         .then()
         .catch(commonUi.gameFailure)
       commonUi.announceTie() // tie will always come from X, the user
-    } else { // computer makes a move only if the game isn't over yet
+    } else if (assignments.player(gameBoard) === 'o') { // computer makes a move only if the game isn't over yet, and if it's the computer's turn
       // Computer freezes the board so the user can't interact with the board
       // Computer alerts the user that it's the computer's turn
       // Stretch goal - computer makes a move after two seconds
       // updates the local board
+      ui.computerThinks()
       setTimeout(() => {
         // computer only moves if it's player o's turn
         easyEngine.computerMove(gameBoard)
