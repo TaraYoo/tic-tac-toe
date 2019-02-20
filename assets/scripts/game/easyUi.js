@@ -5,7 +5,11 @@ const commonUi = require('./commonUi.js')
 const easySuccess = responseData => {
   $('#game-board').children().removeClass('hot-seat-box')
   $('#game-board').children().addClass('easy-box')
-  $('.game-mode').text('Easy mode - Please give the computer some time to think')
+  $('.game-mode').text('Easy mode - Play against a computer.')
+  $('.game-mode').show()
+  $('#user-alert').text('Player x goes first')
+  $('#user-alert').show()
+  $('.intro').hide()
 }
 
 const playerWin = () => {
@@ -20,39 +24,24 @@ const computerWin = () => {
   $('#game-board').children().removeClass('hot-seat-box')
 }
 
-const makePlayerWait = () => {
+const computerThinks = () => {
   $('#game-board').children().removeClass('easy-box')
   $('#game-board').children().removeClass('hot-seat-box')
-  setTimeout(() => {
-    $('#game-board').children().addClass('easy-box')
-  }, 1999)
-}
-
-const playerTurn = () => {
-  $('#user-alert').show()
-  $('#user-alert').text("You're up!")
-}
-
-const computerTurn = () => {
   $('#user-alert').show()
   $('#user-alert').text('Computer is up!')
-  setTimeout(() => {
-    $('#user-alert').text("You're up!")
-  }, 2100)
 }
 
 const computerMove = gameBoard => {
-  setTimeout(() => {
-    commonUi.showGameBoard(gameBoard)
-  }, 2000)
+  commonUi.showGameBoard(gameBoard)
+  $('#user-alert').show()
+  $('#user-alert').text("You're up!")
+  $('#game-board').children().addClass('easy-box')
 }
 
 module.exports = {
   easySuccess,
   playerWin,
   computerWin,
-  playerTurn,
   computerMove,
-  computerTurn,
-  makePlayerWait
+  computerThinks
 }
