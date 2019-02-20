@@ -20,7 +20,7 @@ const onEasy = (event) => {
 }
 
 const onUserMove = (event) => {
-  // on each user move, complete user move from hotseat - which includes checking the board to see if there is a winner / tie
+  // on each user move, complete user move from common events - which logs the user's move to the local board, the API, and the screen
   commonEvents.onUserMove(event)
 
   // after the user's move, have the computer make a random move after two seconds
@@ -42,28 +42,36 @@ const onUserMove = (event) => {
         .then()
         .catch(commonUi.gameFailure)
       commonUi.announceTie() // tie will always come from X, the user
-    } else { // computer makes a move only if the game isn't over yet
-      // computer makes a move
-      ui.makePlayerWait()
-      easyEngine.computerMove(gameBoard)
-      // update the UI after a two second delay to make it look like the computer is thinking
-      ui.computerMove(gameBoard)
-      // Computer takes exactly 2 seconds to make a move, during that time say that computer is up. At 2100 miliseconds, switch to player turn
-      ui.computerTurn()
-      // update the backend with the computer's move
-      api.updateGamePiece(gameId, targetIndex, gameBoard[targetIndex])
-        .then()
-        .catch(commonUi.gameFailure)
-      // check the new board to see if the computer won
-      if (commonEngine.declareWinner(gameBoard)) {
-        api.updateGameStatus(gameId, true)
+    } else if (assignments.player(gameBoard) === 'o') { // computer makes a move only if the game isn't over yet, and if it's the computer's turn
+      // Computer freezes the board so the user can't interact with the board
+      // Computer alerts the user that it's the computer's turn
+      // Stretch goal - computer makes a move after two seconds
+      // updates the local board
+      ui.computerThinks()
+      setTimeout(() => {
+        // computer only moves if it's player o's turn
+        easyEngine.computerMove(gameBoard)
+        // updates the UI from the local board
+        ui.computerMove(gameBoard)
+        // updates the API from the local board
+        api.updateGamePiece(gameId, targetIndex, gameBoard[targetIndex])
           .then()
           .catch(commonUi.gameFailure)
-        // Announce that the computer won
-        setTimeout(() => {
+        // Checks if the board has a winner
+        if (commonEngine.declareWinner(gameBoard)) {
+          api.updateGameStatus(gameId, true)
+            .then()
+            .catch(commonUi.gameFailure)
+          // Announce that the computer won
           ui.computerWin()
-        }, 2101)
-      }
+        } else if (commonEngine.declareTie(gameBoard)) {
+          // Announce the tie - only the player can trigger a tie since X goes last
+          api.updateGameStatus(gameId, true)
+            .then()
+            .catch(commonUi.gameFailure)
+          commonUi.announceTie() // tie will always come from X, the user
+        }
+      }, 1000)
     }
   }
 }

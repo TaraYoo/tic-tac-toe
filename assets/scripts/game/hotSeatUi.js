@@ -8,7 +8,10 @@ const hotSeatSuccess = () => {
   $('#game-board').children().removeClass('easy-box')
   $('#game-board').children().addClass('hot-seat-box')
   $('.game-mode').show()
-  $('.game-mode').text('Hot seat mode - pass the screen to your opponent')
+  $('.game-mode').text('Hot seat mode - pass the screen to your opponent.')
+  $('#user-alert').text('Player x goes first')
+  $('#user-alert').show()
+  $('.intro').hide()
 }
 
 const announceWinner = (winner) => {

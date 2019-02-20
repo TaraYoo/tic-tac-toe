@@ -48,7 +48,11 @@ const getProfile = responseData => {
   const oVictory = []
 
   finishedGames.forEach(game => {
-    gameEngine.declareWinner(game.cells) === 'x' ? xVictory.push(game) : oVictory.push(game)
+    if (gameEngine.declareWinner(game.cells) === 'x') {
+      xVictory.push(game)
+    } else if (gameEngine.declareWinner(game.cells) === 'o') {
+      oVictory.push(game)
+    }
   })
 
   $('.total-games').text(`You played ${numberOfGames} games.`)
