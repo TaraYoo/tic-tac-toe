@@ -13,13 +13,10 @@
 const userEvents = require('./user/userEvents')
 const easy = require('./game/easyEvents')
 const hotSeat = require('./game/hotSeatEvents')
-const commonEvents = require('./game/commonEvents')
 
 $(() => {
   // user auth related events
-  $('#sign-up').on('click', userEvents.onSignUpRequest)
   $('#sign-up-form').on('submit', userEvents.onSignUp)
-  $('#sign-in').on('click', userEvents.onSignInRequest)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
   $('#profile').on('click', userEvents.onProfile)
   $('#sign-out').on('click', userEvents.onSignOut)

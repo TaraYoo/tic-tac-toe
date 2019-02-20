@@ -32,34 +32,74 @@
 }
 // from Jen's styling class on Friday, 2/15
 
-.hidden-elements {
-  display: none;
-}
-
-.warning {
-  justify-content: center;
-  max-width: 50vh;
-}
-
+// some styling sources https://thebestmotherfucking.website/
 body {
-  min-height: 100vh;
-}
-
-main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-left: 20vh;
-  margin-top: 20vh;
+  font-size: $mundane-communication;
+  line-height: 1.4;
+  min-height: 80vh;
 
-  > form {
+  nav {
+    color: $whitesmoke;
+    font-size: $nav-font;
+    position: absolute;
+
+    .button {
+      display: none;
+    }
+
+    .navbar-brand {
+      font-size: $nav-brand;
+    }
+
+    .post-sign-in {
+      display: none;
+    }
+  }
+
+  main {
     align-items: center;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    display: none;
+    // styling guide from https://medium.freecodecamp.org/how-to-center-things-with-style-in-css-dc87b7542689
+  }
+
+  .modal {
+    font-size: $mundane-communication;
+  }
+
+  .on-load {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: auto;
-  }
-}
+    min-width: 80%;
 
-ul {
-  list-style-type: none;
+    * {
+      align-items: center;
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 80%;
+    }
+  }
+
+  .profile {
+    display: none;
+    font-size: $mundane-communication;
+    padding-left: 2vh;
+    padding-top: .5vh;
+  }
+
+  .user-communication {
+    display: none;
+    font-size: $mundane-communication;
+    padding-left: 2vh;
+    padding-top: .5vh;
+  }
+
 }
