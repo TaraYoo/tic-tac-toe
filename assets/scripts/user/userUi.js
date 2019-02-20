@@ -3,40 +3,30 @@
 const store = require('../store.js')
 const gameEngine = require('../../../lib/commonEngine.js')
 
-const signUpRequest = () => { // change name to displaySignUp
-  $('form').trigger('reset')
-  $('.hidden-elements').hide()
-  $('#sign-up-form').show()
-}
-
 const signUpSuccess = () => {
-  $('.hidden-elements').hide()
   $('form').trigger('reset')
   const signInGuide = "You're signed up. Please sign in."
-  $('#user-alert').html(signInGuide)
-  $('#user-alert').show()
-}
-
-const signInRequest = () => { // change name to displaySignIn
-  // Have either sign up or sign in form visible at the start
-  $('form').trigger('reset')
-  $('#user-alert').empty()
-  $('.hidden-elements').hide()
-  $('#sign-in-form').show()
+  $('.user-communication').children().empty()
+  $('#user-alert').text(signInGuide)
+  $('.user-communication').show()
+  $('#sign-up-button').hide()
+  $('#sign-up-form').hide()
+  $('.unfinished-games').empty()
+  $('#change-password-form').hide()
 }
 
 const signInSuccess = responseData => {
   store.user = responseData.user
   const userName = store.user.email.split('@')[0]
-  $('.hidden-elements').hide()
-  $('#sign-up').hide()
-  $('#sign-in').hide()
+  $('.on-load').hide()
   $('form').trigger('reset')
   $('.user-name').html(`Welcome ${userName}`)
-  $('.user-welcome').show()
-  $('.post-sign-in').show()
   $('.profile').show()
-  $('.intro').show()
+  $('.post-sign-in').show()
+  $('.col-4').hide()
+  $('.user-communication').children().empty()
+  $('.unfinished-games').empty()
+  $('#change-password-form').hide()
 }
 
 const getProfile = responseData => {
@@ -59,16 +49,18 @@ const getProfile = responseData => {
   $('.finished-games').text(`You finished ${finishedGames.length} games.`)
   $('.won-games').text(`Player x won ${xVictory.length}, and player o won ${oVictory.length}.`)
 
-  $('.hidden-elements').hide()
-  $('#user-alert').hide()
+  $('.user-communication').children().empty()
   $('.post-sign-in').show()
   $('.profile').show()
+  $('.intro').hide()
+  $('.col-4').hide()
+  $('.unfinished-games').empty()
+  $('#change-password-form').hide()
 }
 
 const listUnfinishedGames = responseData => {
   const unfinishedGames = []
-  $('#user-alert').empty()
-  $('#user-alert').hide()
+  $('.user-communication').children().empty()
   $('.unfinished-games').empty()
   $('.gamearea').hide()
   responseData.games.forEach(game => {
@@ -87,45 +79,62 @@ const listUnfinishedGames = responseData => {
 
   $('.hidden-elements').hide()
   $('.unfinished-games').show()
+  $('.profile').hide()
   $('.post-sign-in').show()
+  $('.col-4').hide()
+  $('#change-password-form').hide()
 }
 
 const signOutSuccess = () => {
-  $('#user-alert').show()
+  $('.user-communication :nth-child(n+1)').empty()
+  $('.user-communication').show()
   $('#user-alert').text('You are signed out!')
   setTimeout(() => {
     $('#user-alert').empty()
   }, 5000)
-  $('.hidden-elements').hide()
   $('form').trigger('reset')
-  $('#sign-up').show()
-  $('#sign-in').show()
+  $('.on-load').show()
+  $('.post-sign-in').hide()
   $('#user-record').empty()
   store.user = null
   $('.unfinished-games').empty()
+  $('.user-states').empty()
+  $('.profile').hide()
+  $('#change-password-form').hide()
 }
 
 const changePasswordRequest = () => {
-  $('.hidden-elements').hide()
+  $('.on-load').hide()
   $('.post-sign-in').show()
   $('form').trigger('reset')
   $('#change-password-form').show()
-  $('#user-alert').empty()
-  $('#user-record').empty()
+  $('#user-communication').hide()
+  $('.profile').hide()
+  $('.unfinished-games').empty()
+  $('.unfinished-games').hide()
+  $('.col-4').empty()
 }
 
 const changePasswordSuccess = () => {
+  $('.user-communication :nth-child(n+1)').empty()
+  $('.user-communication').show()
   $('#user-alert').show()
   $('#user-alert').text('Password changed successfully.')
   setTimeout(() => {
     $('#user-alert').empty()
   }, 4000)
   $('form').trigger('reset')
-  $('.hidden-elements').hide()
+  $('.on-load').hide()
   $('.post-sign-in').show()
+  $('.profile').hide()
+  $('.unfinished-games').empty()
+  $('.unfinished-games').hide()
+  $('.col-4').empty()
 }
 
 const failure = () => {
+  $('.user-communication :nth-child(n+1)').empty()
+  $('.user-communication').show()
   $('#user-alert').text('Something went wrong. Please try again')
   setTimeout(() => {
     $('#user-alert').empty()
@@ -134,9 +143,7 @@ const failure = () => {
 }
 
 module.exports = {
-  signUpRequest,
   signUpSuccess,
-  signInRequest,
   signInSuccess,
   signOutSuccess,
   changePasswordRequest,

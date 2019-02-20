@@ -45,10 +45,6 @@ body {
     font-size: $nav-font;
     position: absolute;
 
-    .button {
-      display: none;
-    }
-
     .navbar-brand {
       font-size: $nav-brand;
     }
@@ -60,11 +56,16 @@ body {
 
   main {
     align-items: center;
-    display: flex;
+    display: none; //main will toggle between display:flex and none
     justify-content: center;
-    display: none;
     // styling guide from https://medium.freecodecamp.org/how-to-center-things-with-style-in-css-dc87b7542689
   }
+
+  footer {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+  } // https://www.w3schools.com/howto/howto_css_fixed_footer.asp
 
   .modal {
     font-size: $mundane-communication;
@@ -93,6 +94,10 @@ body {
     font-size: $mundane-communication;
     padding-left: 2vh;
     padding-top: .5vh;
+
+    .user-stats {
+      list-style-type: none;
+    }
   }
 
   .user-communication {

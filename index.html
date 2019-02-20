@@ -14,7 +14,7 @@
     <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-brand">Tic Tac Toe</div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler post-sign-in" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <section class="collapse navbar-collapse on-sign-in" id="navbarSupportedContent">
@@ -29,7 +29,7 @@
       </nav> <br>
 
       <section class="on-load">
-        <button class="btn btn-secondary btn-lg" data-toggle="collapse" href="#sign-up-form" type="button">
+        <button class="btn btn-secondary btn-lg" data-toggle="collapse" href="#sign-up-form" id="sign-up-button" type="button">
           Sign Up
         </button> <br>
 
@@ -53,6 +53,13 @@
           <input type="submit" value="Sign In" class="btn">
         </form>
       </section>
+
+      <form id="change-password-form" class="collapse">
+        <input name=passwords[old] type="password" placeholder="old password" class="form-control"> <br>
+        <input name=passwords[new] type="password" placeholder="new password" class="form-control"> <br>
+        <input type="submit" value="Change Password" class="btn">
+      </form>
+
 
       <div class="modal" tabindex="-1" role="dialog" id="selectGameModal">
         <div class="modal-dialog" role="document">
@@ -81,7 +88,7 @@
 
       <section class="profile">
         <h1 class="user-name"></h1>
-        <ul>
+        <ul class="user-stats">
           <li class="total-games"></li>
           <li class="finished-games"></li>
           <li class="won-games"></li>
@@ -94,6 +101,8 @@
           If you're not interested in playing, check your stats in your profile.
         </p>
       </section>
+
+      <div class="unfinished-games"></div>
 
       <main>
         <div class="embed-responsive embed-responsive-1by1 gamearea">
