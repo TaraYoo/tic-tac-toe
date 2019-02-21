@@ -178,9 +178,6 @@ const changePasswordSuccess = () => {
 }
 
 const failure = () => {
-  // empty all dynamic content
-  commonUi.emptyDynamic()
-
   // no unrelated content to hide - fit into current state
 
   // fill target element

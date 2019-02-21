@@ -13,32 +13,43 @@ const emptyDynamic = () => {
 }
 
 // function to render the gameboard according to the called game at the time
+// also gets called to hotSeatEvents
 const showGameBoard = (gameBoard) => {
   for (let i = 0; i < gameBoard.length; i++) {
     $(`.game-board :nth-child(${i + 1})`).text(gameBoard[i])
   }
 }
 
-// function to show and trigger
-
+// function to show and newly generate game board
 const callGameSuccess = (responseData) => {
+  // empty all dynamically generated content
+  emptyDynamic()
+
+  // hide all unrelated content
+  $('.on-load').hide()
+  $('.profile').hide()
+
+  // Retrieve necessary constants
   store.user.game = responseData.game
   const gameBoard = store.user.game.cells
-  $('.on-load').hide()
-  $('.post-sign-in').show()
-  $('form').trigger('reset')
-  $('form').hide()
-  $('#invalid-move').empty()
-  $('.unfinished-games').empty()
-  $('.profile').hide()
+
+  // Fill target element
   showGameBoard(gameBoard)
   $('#game-id').text(`Playing Game #${store.user.game.id}`)
-  $('.user-communication').show()
+
+  // show gamearea, and user communication
   $('.gamearea').show()
-  $('.game-board').show()
+  $('.user-communication').show()
+
+  // Show post-sign-in menus. Hide change password
+  $('.post-sign-in').show()
+  $('#change-password-form').hide()
 }
 
 const invalidMove = function () {
+  // no unrelated content to hide - this ui only gets called in game
+
+  // fill target element
   $('#invalid-move').html('Invalid Move')
 
   setTimeout(() => {
@@ -47,18 +58,22 @@ const invalidMove = function () {
 }
 
 const announceTie = () => {
+  // no unrelated content to hide - this ui only gets called in game
   $('.game-board').children().removeClass('easy-box')
   $('.game-board').children().removeClass('hot-seat-box')
-  $('#user-alert').html('Game Ties! Play a new game or finish an old one. This board will stop responding')
+  $('#user-alert').html('Tied game. Play a new game or finish an old one. This board will stop responding')
 }
 
 const gameFailure = () => {
-  $('#user-alert').show()
-  $('#user-alert').text('Your game lost connection with the server. Please try again.')
+  // no unrelated content to hide - fit into current state
 
+  // fill target element
+  $('#user-alert').text('Your game lost connection with the server. Please try again.')
   setTimeout(() => {
     $('#user-alert').html('')
   }, 5000)
+
+  // show parent element
   $('.user-communication').show()
 }
 

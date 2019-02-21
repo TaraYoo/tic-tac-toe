@@ -47,6 +47,7 @@ const onRevisitOneGame = (event) => {
 
   const gameId = event.target.id.split('_')[1]
   api.getOneGame(gameId)
+    .then(commonUi.callGameSuccess)
     .then(ui.revisitOneGameSuccess)
     .catch(ui.gameFailure)
 }
