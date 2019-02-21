@@ -44,6 +44,37 @@ body {
     display: none;
   }
 
+  .gamearea {
+    display: none;
+  }
+
+  .toggled-form {
+    align-self: center;
+    display: none;
+    justify-content: center;
+    margin: auto;
+    max-width: 50%;
+    min-width: 45%;
+  }
+
+  .profile {
+    display: none;
+    font-size: $mundane-communication;
+    padding-left: 2vh;
+    padding-top: .5vh;
+
+    .user-stats {
+      list-style-type: none;
+      }
+  }
+
+  .user-communication {
+    display: none;
+    font-size: $mundane-communication;
+    padding-left: 2vh;
+    padding-top: .5vh;
+  }
+
   nav {
     color: $whitesmoke;
     justify-content: flex-end;
@@ -63,10 +94,6 @@ body {
     display: flex;
     justify-content: center;
     // styling guide from https://medium.freecodecamp.org/how-to-center-things-with-style-in-css-dc87b7542689
-  }
-
-  .gamearea {
-    display: none;
   }
 
   footer {
@@ -95,24 +122,8 @@ body {
       justify-content: center;
       width: 80%;
     }
+
   }
 
-  .profile {
-    display: none;
-    font-size: $mundane-communication;
-    padding-left: 2vh;
-    padding-top: .5vh;
-
-    .user-stats {
-      list-style-type: none;
-    }
-  }
-
-  .user-communication {
-    display: none;
-    font-size: $mundane-communication;
-    padding-left: 2vh;
-    padding-top: .5vh;
-  }
 
 }

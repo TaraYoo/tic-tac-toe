@@ -39,30 +39,30 @@
      <br>
 
       <section class="on-load">
-        <button class="btn btn-secondary btn-lg" data-toggle="collapse" href="#sign-up-form" id="sign-up-button" type="button">
+        <button class="btn btn-secondary btn-lg" id="sign-up-button" type="button">
           Sign Up
         </button> <br>
 
-        <button class="btn btn-secondary btn-lg" data-toggle="collapse" href="#sign-in-form" type="button">
+        <button class="btn btn-secondary btn-lg" id="sign-in-button" type="button">
           Sign In
         </button>
-
-        <form class="collapse" id="sign-up-form">
-          <h2 class="warning">This application is not secure. To sign up, please do not use real passwords, or any password you have used anywhere else</h2>
-          <br>
-          <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
-          <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
-          <input name="credentials[password_confirmation]" type="password" placeholder="confirm password" class="form-control"> <br>
-          <input type="submit" value="Sign Up" class="btn">
-        </form> <br>
-
-        <form class="collapse" id="sign-in-form">
-          <h2>Sign In</h2>
-          <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
-          <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
-          <input type="submit" value="Sign In" class="btn">
-        </form>
       </section>
+
+      <form id="sign-up-form" class="toggled-form">
+        <h2 class="warning">This application is not secure. To sign up, please do not use real passwords, or any password you have used anywhere else</h2>
+        <br>
+        <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
+        <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
+        <input name="credentials[password_confirmation]" type="password" placeholder="confirm password" class="form-control"> <br>
+        <input type="submit" value="Sign Up" class="btn">
+      </form> <br>
+
+      <form id="sign-in-form" class="toggled-form">
+        <h2>Sign In</h2>
+        <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
+        <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
+        <input type="submit" value="Sign In" class="btn">
+      </form>
 
       <form id="change-password-form" class="post-sign-in">
         <input name=passwords[old] type="password" placeholder="old password" class="form-control"> <br>

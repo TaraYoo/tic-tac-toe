@@ -4,6 +4,21 @@ const store = require('../store.js')
 const gameEngine = require('../../../lib/commonEngine.js')
 const commonUi = require('../game/commonUi.js')
 
+const signUpButtonPressed = () => {
+  // empty all dynamic content
+  commonUi.emptyDynamic()
+
+  // hide all unrelated content
+  $('.post-sign-in').hide()
+  $('#change-password-form').hide()
+  $('.profile').hide()
+  $('.gamearea').hide()
+  $('#sign-in-form').hide()
+
+  // show the sign-up-form
+  $('#sign-up-form').show()
+}
+
 const signUpSuccess = () => {
   commonUi.emptyDynamic()
   // hide all unrelated content
@@ -13,6 +28,21 @@ const signUpSuccess = () => {
   $('#user-alert').text("You're signed up. Please sign in.")
   // Show the user feedback
   $('.user-communication').show()
+}
+
+const signInButtonPressed = () => {
+  // empty all dynamic content
+  commonUi.emptyDynamic()
+
+  // hide all unrelated content
+  $('.post-sign-in').hide()
+  $('#change-password-form').hide()
+  $('.profile').hide()
+  $('.gamearea').hide()
+  $('#sign-up-form').hide()
+
+  // show the sign-up-form
+  $('#sign-in-form').show()
 }
 
 const signInSuccess = responseData => {
@@ -191,7 +221,9 @@ const failure = () => {
 }
 
 module.exports = {
+  signUpButtonPressed,
   signUpSuccess,
+  signInButtonPressed,
   signInSuccess,
   signOutSuccess,
   changePasswordRequest,
