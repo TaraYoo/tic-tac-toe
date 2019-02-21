@@ -2,6 +2,16 @@
 
 const store = require('../store.js')
 
+// function to empty all dynamically generated content
+// this function also goes to user UI
+const emptyDynamic = () => {
+  $('form').trigger('reset')
+  $('.user-communication').children().empty()
+  $('.user-stats').children().empty()
+  $('.unfinished-games').empty()
+  $('.game-board').children().empty()
+}
+
 // function to render the gameboard according to the called game at the time
 const showGameBoard = (gameBoard) => {
   for (let i = 0; i < gameBoard.length; i++) {
@@ -53,6 +63,7 @@ const gameFailure = () => {
 }
 
 module.exports = {
+  emptyDynamic,
   callGameSuccess,
   gameFailure,
   showGameBoard,

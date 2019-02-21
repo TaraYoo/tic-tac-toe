@@ -40,6 +40,10 @@ body {
   line-height: 1.4;
   min-height: 80vh;
 
+  .post-sign-in {
+    display: none;
+  }
+
   nav {
     color: $whitesmoke;
     justify-content: flex-end;
@@ -52,10 +56,6 @@ body {
     .navbar-brand {
       font-size: $nav-brand;
     }
-
-    .post-sign-in {
-      display: none;
-    }
   }
 
   main {
@@ -63,10 +63,10 @@ body {
     display: flex;
     justify-content: center;
     // styling guide from https://medium.freecodecamp.org/how-to-center-things-with-style-in-css-dc87b7542689
+  }
 
-    .game-board {
-      display: none;
-    }
+  .gamearea {
+    display: none;
   }
 
   footer {
