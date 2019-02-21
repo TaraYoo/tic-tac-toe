@@ -35,7 +35,7 @@ computer that is randomly placing pieces in empty places on the board.
 The computer makes its move after a one-second delay to simulate a real person.
 
 ## Planning
-This was the initial wireframe [!Wireframe](https://i.imgur.com/3CJ1fiB.jpg)
+This was the initial wireframe ![Wireframe](https://i.imgur.com/3CJ1fiB.jpg)
 
 The user stories I decided to focus on were:
 - Be able to sign up, sign in, sign out, change password, and be notified if
@@ -55,7 +55,7 @@ I was able to meet the first stretch goal - users can play aginast a computer
 that randomly places pieces in empty parts of the board.
 
 After getting to know the API better, I changed my wireframe to the below.
-[!UpdatedWireframe](https://i.imgur.com/PuA8rHY.jpg)
+![UpdatedWireframe](https://i.imgur.com/PuA8rHY.jpg)
 
 My main issues were:
 1) Have app recognize that a game is over
