@@ -6,11 +6,11 @@ In order to play a game, you'll need to make an account. You can also replay any
 games you left unfinished.
 
 Please note that this is a toy application. The user authorization is NOT secure.
-Please do not use any passwords that you used anywhere else. I woudl also
+Please do not use any passwords that you used anywhere else. I would also
 recommend using a fake email.
 
 ## Motivation
-This project was the first major assignment in General Assembly's Web Development
+This project was the first project assignment in General Assembly's Web Development
 Intensive Program. The front-end is my work. General Assembly built the back-end using
 Ruby on Rails.
 
@@ -23,6 +23,7 @@ Ruby on Rails.
 - [Node.js](https://nodejs.org/en/)
 - [Github Pages](https://pages.github.com/)
 - [Bootstrap](https://getbootstrap.com/)
+- [SaSS](https://sass-lang.com/)
 
 ## Features
 Users can sign up, sign in, change password, look up game records, and sign out
@@ -71,11 +72,15 @@ My main issues were:
   a piece to its representation of the game grid (a 1-dimensional array) in the
   corresponding index. I set the browser to update from the locally stored game board
   The user's move also triggers the API to update the game state from the back end.
-
   I was trying to keep as much of the game in the local environment as possible
   since I don't own the back end, but given a back end that I own, I would make
   the browser view update from the back end API to have just one source
   of the game state.
+
+Future goals for the app are:
+- Spinners on screen while the app is communicating with the back end
+- Better documentation with an improved README.md
+- Cleaner user alerts with bigger emphasis on game win / tie announcements
 
 ## API Reference
 
@@ -86,11 +91,9 @@ Visit the game [here](https://tarayoo.github.io/tic-tac-toe/)
 You will need to sign up first to get access to new games. Please do not use real
 passwords or emails. This is a toy application.
 
-## Future Goals
-I'd like to clean up the classes, and ids in index.html to make the UI easier to
-write and debug. The app, as of now, is not accessible.
-
 ## Credits
 The game grid design is from Jennifer Meade, one of the GA instructors.
 The computer's random moves was calculated with a random number function from
 MDN.
+I got much of my styling code from articles on [CSS-tricks](https://css-tricks.com/)
+Typography comes from [Satire site](https://thebestmotherfucking.website/)
