@@ -2,44 +2,50 @@
 
 const store = require('../store.js')
 const gameEngine = require('../../../lib/commonEngine.js')
-
-const signUpRequest = () => { // change name to displaySignUp
-  $('form').trigger('reset')
-  $('.hidden-elements').hide()
-  $('#sign-up-form').show()
-}
+const commonUi = require('../game/commonUi.js')
 
 const signUpSuccess = () => {
-  $('.hidden-elements').hide()
-  $('form').trigger('reset')
-  const signInGuide = "You're signed up. Please sign in."
-  $('#user-alert').html(signInGuide)
-  $('#user-alert').show()
-}
-
-const signInRequest = () => { // change name to displaySignIn
-  // Have either sign up or sign in form visible at the start
-  $('form').trigger('reset')
-  $('#user-alert').empty()
-  $('.hidden-elements').hide()
-  $('#sign-in-form').show()
+  commonUi.emptyDynamic()
+  // hide all unrelated content
+  $('.post-sign-in').hide()
+  $('.gamearea').hide()
+  // Generate user message for user communication
+  $('#user-alert').text("You're signed up. Please sign in.")
+  // Show the user feedback
+  $('.user-communication').show()
 }
 
 const signInSuccess = responseData => {
+  // empty all dynamic content
+  commonUi.emptyDynamic()
+  // hide all unrelated content
+  $('.on-load').hide()
+  $('form').hide()
+  $('.user-communication').hide()
+  // Find user-name
   store.user = responseData.user
   const userName = store.user.email.split('@')[0]
-  $('.hidden-elements').hide()
-  $('#sign-up').hide()
-  $('#sign-in').hide()
-  $('form').trigger('reset')
+  // Add user name to message
   $('.user-name').html(`Welcome ${userName}`)
-  $('.user-welcome').show()
-  $('.post-sign-in').show()
+  // Show the user profile
   $('.profile').show()
-  $('.intro').show()
+  // Show post-sign-in menus. Hide change password and gamearea
+  $('.post-sign-in').show()
+  $('#change-password-form').hide()
+  $('.gamearea').hide()
 }
 
 const getProfile = responseData => {
+  // empty all dynamic content
+  commonUi.emptyDynamic()
+
+  // hide all unrelated content
+  $('.on-load').hide()
+  $('form').hide()
+  $('.user-communication').hide()
+  $('.gamearea').hide()
+
+  // get the necessary constants
   const numberOfGames = responseData.games.length
 
   const finishedGames = responseData.games.filter(game => game.over)
@@ -54,29 +60,43 @@ const getProfile = responseData => {
       oVictory.push(game)
     }
   })
+  const userName = store.user.email.split('@')[0]
 
+  // Populate intended targets
+  $('.user-name').text(`Welcome ${userName}`)
   $('.total-games').text(`You played ${numberOfGames} games.`)
   $('.finished-games').text(`You finished ${finishedGames.length} games.`)
   $('.won-games').text(`Player x won ${xVictory.length}, and player o won ${oVictory.length}.`)
 
-  $('.hidden-elements').hide()
-  $('#user-alert').hide()
-  $('.post-sign-in').show()
+  // Show the user profile
   $('.profile').show()
+
+  // Show post-sign-in menus. Hide change password
+  $('.post-sign-in').show()
+  $('#change-password-form').hide()
 }
 
 const listUnfinishedGames = responseData => {
-  const unfinishedGames = []
-  $('#user-alert').empty()
-  $('#user-alert').hide()
-  $('.unfinished-games').empty()
+  // empty all dynamic content
+  commonUi.emptyDynamic()
+
+  // hide all unrelated content
+  $('.on-load').hide()
+  $('form').hide()
+  $('.user-communication').hide()
+  $('.profile').hide()
   $('.gamearea').hide()
+
+  // get the necessary constants
+  const unfinishedGames = []
+
   responseData.games.forEach(game => {
     if (!game.over) {
       unfinishedGames.push(game)
     }
   })
 
+  // Populate target elements
   unfinishedGames.forEach(game => {
     const gameIDHtml = (`
       <button type=button id=game_${game.id} class=one-unfinished-game>${game.id}</button>
@@ -85,58 +105,93 @@ const listUnfinishedGames = responseData => {
     $('.one-unfinished-game').addClass('btn btn-link')
   })
 
-  $('.hidden-elements').hide()
+  // show the list of unfinished games
   $('.unfinished-games').show()
+
+  // Show post-sign-in menus. Hide change password
   $('.post-sign-in').show()
+  $('#change-password-form').hide()
 }
 
 const signOutSuccess = () => {
-  $('#user-alert').show()
+  // empty all dynamic content
+  commonUi.emptyDynamic()
+
+  // hide all unrelated content
+  $('.post-sign-in').hide()
+  $('#change-password-form').hide()
+  $('.profile').hide()
+  $('.gamearea').hide()
+
+  // Fill target element
   $('#user-alert').text('You are signed out!')
   setTimeout(() => {
     $('#user-alert').empty()
-  }, 5000)
-  $('.hidden-elements').hide()
-  $('form').trigger('reset')
-  $('#sign-up').show()
-  $('#sign-in').show()
-  $('#user-record').empty()
+  }, 4000)
+
+  // Show the sign out message
+  $('.user-communication').show()
+
+  // Show landing page
+  $('.on-load').show()
+
+  // Delete user info in store
   store.user = null
-  $('.unfinished-games').empty()
 }
 
 const changePasswordRequest = () => {
-  $('.hidden-elements').hide()
-  $('.post-sign-in').show()
-  $('form').trigger('reset')
+  // empty all dynamic content
+  commonUi.emptyDynamic()
+
+  // hide all unrelated content
+  $('.on-load').hide()
+  $('.profile').hide()
+  $('.gamearea').hide()
+
+  // Show the change password form
   $('#change-password-form').show()
-  $('#user-alert').empty()
-  $('#user-record').empty()
+
+  // Show post-sign-in menus
+  $('.post-sign-in').show()
 }
 
 const changePasswordSuccess = () => {
-  $('#user-alert').show()
+  // empty all dynamic content
+  commonUi.emptyDynamic()
+
+  // hide all unrelated content
+  $('.on-load').hide()
+  $('.profile').hide()
+  $('.gamearea').hide()
+
+  // fill the target element
   $('#user-alert').text('Password changed successfully.')
   setTimeout(() => {
     $('#user-alert').empty()
   }, 4000)
-  $('form').trigger('reset')
-  $('.hidden-elements').hide()
+
+  // Show user communication
+  $('.user-communication').show()
+
+  // Show post-sign-in menus
   $('.post-sign-in').show()
 }
 
 const failure = () => {
+  // no unrelated content to hide - fit into current state
+
+  // fill target element
   $('#user-alert').text('Something went wrong. Please try again')
   setTimeout(() => {
     $('#user-alert').empty()
   }, 4000)
-  $('form').trigger('reset')
+
+  // show user communication
+  $('.user-communication').show()
 }
 
 module.exports = {
-  signUpRequest,
   signUpSuccess,
-  signInRequest,
   signInSuccess,
   signOutSuccess,
   changePasswordRequest,

@@ -13,13 +13,10 @@
 const userEvents = require('./user/userEvents')
 const easy = require('./game/easyEvents')
 const hotSeat = require('./game/hotSeatEvents')
-const commonEvents = require('./game/commonEvents')
 
 $(() => {
   // user auth related events
-  $('#sign-up').on('click', userEvents.onSignUpRequest)
   $('#sign-up-form').on('submit', userEvents.onSignUp)
-  $('#sign-in').on('click', userEvents.onSignInRequest)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
   $('#profile').on('click', userEvents.onProfile)
   $('#sign-out').on('click', userEvents.onSignOut)
@@ -28,11 +25,11 @@ $(() => {
 
   // hot seat mode related game activities
   $('#hot-seat').on('click', hotSeat.onHotSeat)
-  $('#game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
+  $('.game-board').on('click', '.hot-seat-box', hotSeat.onUserMove)
 
   // easy mode related game activities - remaining bug: user message
   $('#easy').on('click', easy.onEasy)
-  $('#game-board').on('click', '.easy-box', easy.onUserMove)
+  $('.game-board').on('click', '.easy-box', easy.onUserMove)
 
   // revisiting related game activities
   $('#revisit-games').on('click', userEvents.onRevisitGame)

@@ -12,104 +12,124 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Tic-Tac-Toe</a>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Tic Tac Toe</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon post-sign-in"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a href="#" class="nav-link pre-sign-in" id="sign-up">Sign Up</a></li>
-            <li class="nav-item active"><a href="#" class="nav-link pre-sign-in" id="sign-in">Sign In</a></li>
-            <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="sign-out">Sign Out</a></li>
-            <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="change-password">Change Password</a></li>
-            <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="new-game" data-toggle="modal" data-target="#exampleModal">Start New Game</a></li>
-            <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="revisit-games">Retrieve Unfinished Games</a></li>
-            <li class="nav-item active"><a href="#" class="nav-link hidden-elements post-sign-in" id="profile">Profile</a></li>
-          </ul>
-        </div>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="sign-out">Sign Out <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="change-password">Change Password <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="new-game" data-toggle="modal" data-target="#selectGameModal">Start New Game <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="revisit-games">Retrieve Unfinished Games <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link post-sign-in" id="profile">Profile <span class="sr-only">(current)</span></a>
+            </li>
       </nav>
+     <br>
 
-      <main>
-        <form id="sign-up-form" class="hidden-elements form-group">
+      <section class="on-load">
+        <button class="btn btn-secondary btn-lg" data-toggle="collapse" href="#sign-up-form" id="sign-up-button" type="button">
+          Sign Up
+        </button> <br>
+
+        <button class="btn btn-secondary btn-lg" data-toggle="collapse" href="#sign-in-form" type="button">
+          Sign In
+        </button>
+
+        <form class="collapse" id="sign-up-form">
           <h2 class="warning">This application is not secure. To sign up, please do not use real passwords, or any password you have used anywhere else</h2>
           <br>
           <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
           <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
           <input name="credentials[password_confirmation]" type="password" placeholder="confirm password" class="form-control"> <br>
           <input type="submit" value="Sign Up" class="btn">
-        </form>
+        </form> <br>
 
-        <form id="sign-in-form" class="hidden-elements form-group">
+        <form class="collapse" id="sign-in-form">
           <h2>Sign In</h2>
           <input name="credentials[email]" type="email" placeholder="email" class="form-control"> <br>
           <input name="credentials[password]" type="password" placeholder="password" class="form-control"> <br>
           <input type="submit" value="Sign In" class="btn">
         </form>
+      </section>
 
-        <form id="change-password-form" class="hidden-elements form-group">
-          <input name=passwords[old] type="password" placeholder="old password" class="form-control"> <br>
-          <input name=passwords[new] type="password" placeholder="new password" class="form-control"> <br>
-          <input type="submit" value="Change Password" class="btn">
-        </form>
+      <form id="change-password-form" class="post-sign-in">
+        <input name=passwords[old] type="password" placeholder="old password" class="form-control"> <br>
+        <input name=passwords[new] type="password" placeholder="new password" class="form-control"> <br>
+        <input type="submit" value="Change Password" class="btn">
+      </form>
 
-        <section class="hidden-elements profile">
-          <!-- <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div> -->
-          <h1 class="user-name"></h1>
-          <ul>
-            <li class="total-games"></li>
-            <li class="finished-games"></li>
-            <li class="won-games"></li>
-          </ul>
-        </section>
-        <p class="intro hidden-elements">
+
+      <div class="modal" tabindex="-1" role="dialog" id="selectGameModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Choose your game mode</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="hot-seat">Hot Seat</button>
+              <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="easy">Computer: Easy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <section class="user-communication">
+        <p id="user-alert"></p>
+        <p id="invalid-move"></p>
+        <p id="game-mode"></p>
+        <p id="game-id"></p>
+      </section>
+
+      <section class="profile">
+        <h1 class="user-name"></h1>
+        <ul class="user-stats">
+          <li class="total-games"></li>
+          <li class="finished-games"></li>
+          <li class="won-games"></li>
+        </ul>
+        <p class="intro">
           Please click Start New Game above to start a new game. There are two options - Hot Seat, and Easy <br>
           Play with a friend next to you, sharing one device, in the Hot Seat mode. <br>
           Or beat a computer at tic-tac-toe in Easy mode <br>
           You can also revisit old games by clicking Retrieve Unfinished Games. You can only play old games in Hot Seat mode <br>
           If you're not interested in playing, check your stats in your profile.
         </p>
+      </section>
 
-        <h2 id="user-alert"></h2>
-        <h2 id="invalid-move"></h2>
-        <div class="game-mode hidden-elements"></div> <br>
-        <h3 id="game-id hidden-elements"></h3>
+      <div class="unfinished-games"></div>
 
-        <div class="hidden-elements unfinished-games"></div>
-
-        <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Choose your game mode</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="hot-seat">Hot Seat</button>
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="easy">Computer: Easy</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="embed-responsive embed-responsive-1by1 gamearea hidden-elements">
-          <div id="game-board" class="embed-responsive-item game-board">
-            <div class="game-box col-4" id="zero"></div>
-            <div class="game-box col-4" id="one"></div>
-            <div class="game-box col-4" id="two"></div>
-            <div class="game-box col-4" id="three"></div>
-            <div class="game-box col-4" id="four"></div>
-            <div class="game-box col-4" id="five"></div>
-            <div class="game-box col-4" id="six"></div>
-            <div class="game-box col-4" id="seven"></div>
-            <div class="game-box col-4" id="eight"></div>
-          </div>
+      <main class="embed-responsive embed-responsive-1by1 gamearea">
+        <div class="embed-responsive-item game-board">
+          <div class="col-4" id="zero"></div>
+          <div class="col-4" id="one"></div>
+          <div class="col-4" id="two"></div>
+          <div class="col-4" id="three"></div>
+          <div class="col-4" id="four"></div>
+          <div class="col-4" id="five"></div>
+          <div class="col-4" id="six"></div>
+          <div class="col-4" id="seven"></div>
+          <div class="col-4" id="eight"></div>
         </div>
       </main>
 
+      <footer>
+        Made by Tara Yoo for General Assembly WDI-30
+      </footer>
     </body>
 </html>
