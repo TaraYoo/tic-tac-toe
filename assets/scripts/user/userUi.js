@@ -126,15 +126,18 @@ const listUnfinishedGames = responseData => {
     }
   })
 
-  // Populate target elements
-  unfinishedGames.forEach(game => {
-    const gameIDHtml = (`
-      <button type=button id=game_${game.id} class=one-unfinished-game>${game.id}</button>
-      `)
-    $('.unfinished-games').append(gameIDHtml)
-    $('.one-unfinished-game').addClass('btn btn-link')
-  })
-
+  // Populate target elements if unfinishedGames is empty, say that there is no game history
+  if (unfinishedGames.length === 0) {
+    $('.unfinished-games').html('no unfinished games')
+  } else {
+    unfinishedGames.forEach(game => {
+      const gameIDHtml = (`
+        <button type=button id=game_${game.id} class=one-unfinished-game>${game.id}</button>
+        `)
+      $('.unfinished-games').append(gameIDHtml)
+      $('.one-unfinished-game').addClass('btn btn-link')
+    })
+  }
   // show the list of unfinished games
   $('.unfinished-games').show()
 
