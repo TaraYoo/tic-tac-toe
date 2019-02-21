@@ -15,6 +15,10 @@ const easy = require('./game/easyEvents')
 const hotSeat = require('./game/hotSeatEvents')
 
 $(() => {
+  // sign up and sign in toggle
+  $('#sign-up-button').on('click', userEvents.onSignUpButtonPress)
+  $('#sign-in-button').on('click', userEvents.onSignInButtonPress)
+
   // user auth related events
   $('#sign-up-form').on('submit', userEvents.onSignUp)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
