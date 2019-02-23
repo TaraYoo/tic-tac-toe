@@ -211,7 +211,8 @@ const changePasswordSuccess = () => {
 }
 
 const failure = () => {
-  // no unrelated content to hide - fit into current state
+  // Reset all forms upon failure
+  $('form').trigger('reset')
 
   // fill target element
   $('#user-alert').text('Something went wrong. Please try again')
