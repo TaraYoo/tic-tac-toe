@@ -156,15 +156,6 @@ const signOutSuccess = () => {
   $('.profile').hide()
   $('.gamearea').hide()
 
-  // Fill target element
-  $('#user-alert').text('You are signed out!')
-  setTimeout(() => {
-    $('#user-alert').empty()
-  }, 4000)
-
-  // Show the sign out message
-  $('.user-communication').show()
-
   // Show landing page
   $('.on-load').show()
 
@@ -215,7 +206,7 @@ const failure = () => {
   $('form').trigger('reset')
 
   // fill target element
-  $('#user-alert').text('Something went wrong. Please try again')
+  $('#user-alert').html('<p class="text-danger">Something went wrong. Please try again</p>')
   setTimeout(() => {
     $('#user-alert').empty()
   }, 4000)

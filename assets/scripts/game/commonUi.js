@@ -50,7 +50,7 @@ const invalidMove = function () {
   // no unrelated content to hide - this ui only gets called in game
 
   // fill target element
-  $('#invalid-move').html('Invalid Move')
+  $('#invalid-move').html('<p class="text-danger">Invalid Move</p>')
 
   setTimeout(() => {
     $('#invalid-move').html('')
@@ -68,7 +68,7 @@ const gameFailure = () => {
   // no unrelated content to hide - fit into current state
 
   // fill target element
-  $('#user-alert').text('Your game lost connection with the server. Please try again.')
+  $('#user-alert').html('<p class="text-danger">Your game lost connection with the server. Please try again.</p>')
   setTimeout(() => {
     $('#user-alert').html('')
   }, 5000)
